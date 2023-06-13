@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+if [ ! -d "$HOME/.cache/lf" ]; then
+        mkdir -p "$HOME/.cache/lf"
+fi
+
+filetype="$(file -Lb --mime-type "$1")"
+
+if [[ "$filetype" =~ ^image ]]; then
+        kitty +kitten icat --silent --stdin no --transfer-mode file --place "${2}x${3}@${4}x${5}" "$1" </dev/null >/dev/tty
+        exit 1
+fi
+
+if [[ "$filetype" =~ ^video ]]; then
+        TEMP_FILE="$HOME/.cache/lf/thumb.jpg"
+        ffmpegthumbnailer -q 5 -s 0 -c jpeg -i "$1" -o "$TEMP_FILE"
+        kitty +kitten icat --silent --stdin no --transfer-mode file --place "${2}x${3}@${4}x${5}" "$TEMP_FILE" </dev/null >/dev/tty
+        exit 1
+fi
+
+if [[ "$filetype" =~ ^application/pdf ]]; then
+        TEMP_FILE="$HOME/.cache/lf/pdftoppm"
+        pdftoppm -jpeg -scale-to-x -1 -scale-to-y 1080 -singlefile "$1" "$TEMP_FILE"
+        kitty +kitten icat --silent --stdin no --transfer-mode file --place "${2}x${3}@${4}x${5}" "$TEMP_FILE.jpg" </dev/null >/dev/tty
+        exit 1
+fi
+
+pistol "$1"

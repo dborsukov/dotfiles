@@ -1,0 +1,10 @@
+[user]
+	name = Denis Borsukov
+	email = denys.borsukov@gmail.com
+	signingkey = 678A89B300DE5EA2D986837CCE9F216DBDA4E98B
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true

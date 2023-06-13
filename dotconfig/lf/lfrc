@@ -1,0 +1,4 @@
+set scrolloff 10
+
+set cleaner ~/.config/lf/cleaner
+set previewer ~/.config/lf/previewer
