@@ -1,6 +1,6 @@
 ## Installation
 
-1. Install arch using `archinstall` and `sway` desktop config
+1. Install arch using `archinstall` with `minimal` config
 2. Install `base-devel`, then install `yay`:
 
 ```
@@ -13,5 +13,3 @@ makepkg -si
 4. Manualy install:
 
     - latest `node` and `npm` using `nvm` (for neovim)
-    - place a wallpaper into ~/Pictures/wall.png
-    - download and apply gtk theme
