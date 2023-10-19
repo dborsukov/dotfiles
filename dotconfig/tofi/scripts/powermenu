@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case "$(echo -e "Shutdown\nReboot\nLogout\nSuspend\nLock" | tofi --prompt-text "do: " --num-results=5)" in
+Shutdown) exec systemctl poweroff ;;
+Reboot) exec systemctl reboot ;;
+Logout) exec hyprctl dispatch exit 0 ;;
+Suspend) exec systemctl suspend ;;
+Lock) exec notify-send "Not implemented yet :)" ;;
+esac
