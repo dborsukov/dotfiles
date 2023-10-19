@@ -1,0 +1,38 @@
+# vi:ft=ini
+command=$HOME/.config/i3blocks/$BLOCK_NAME
+
+[pacman]
+command=echo "UPD $(checkupdates | wc -l)"
+interval=60
+
+[disk]
+LABEL=HOME 
+interval=30
+
+[memory_usage]
+label=MEM 
+interval=5
+
+[cpu_usage]
+interval=5
+LABEL=CPU 
+T_WARN=75
+T_CRIT=90
+DECIMALS=2
+COLOR_NORMAL=#FFFFFF
+COLOR_WARN=#FFFC00
+COLOR_CRIT=#FF0000
+
+[temperature]
+label=TEMP 
+interval=5
+
+[volume]
+LABEL=VOL 
+signal=10
+interval=once
+
+[time]
+command=date '+%B %d %A %H:%M'
+interval=5
+

@@ -1,0 +1,110 @@
+# Autostart
+exec --no-startup-id dunst
+exec --no-startup-id i3-layouts
+exec --no-startup-id lxsession
+exec --no-startup-id megasync
+exec --no-startup-id nm-applet
+exec --no-startup-id setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle -option caps:ctrl_modifier
+exec --no-startup-id udiskie
+exec --no-startup-id udisksctl mount -b /dev/sdc2
+exec --no-startup-id unclutter --root
+exec --no-startup-id xrandr -s 1920x1080 -r 60
+exec --no-startup-id xset r rate 200 25
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id ~/.fehbg
+
+# Variables
+set $terminal kitty
+
+set $mod Mod4
+set $refresh_i3blocks_volume pkill -RTMIN+10 i3blocks
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Settings
+font pango:JetBrainsMono Nerd Font 8
+floating_modifier $mod
+tiling_drag modifier titlebar
+default_border pixel
+hide_edge_borders smart
+
+# Bindings
+bindsym $mod+Shift+q kill
+bindsym $mod+Return exec $terminal
+bindsym $mod+p exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+p exec --no-startup-id rofi -show run
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h exec i3l move left
+bindsym $mod+Shift+j exec i3l move down
+bindsym $mod+Shift+k exec i3l move up
+bindsym $mod+Shift+l exec i3l move right
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3blocks_volume
+bindsym $mod+Mod1+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3blocks_volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3blocks_volume
+bindsym $mod+Mod1+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3blocks_volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3blocks_volume
+bindsym $mod+Mod1+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3blocks_volume
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# dynamic layouts (i3-layouts)
+# available: vstack, hstack, spiral, 3columns, 2columns, companion, autosplit
+set $i3l vstack to workspace $ws1
+set $i3l vstack to workspace $ws2
+set $i3l vstack to workspace $ws3
+set $i3l vstack to workspace $ws4
+set $i3l vstack to workspace $ws5
+set $i3l vstack to workspace $ws6
+set $i3l vstack to workspace $ws7
+set $i3l vstack to workspace $ws8
+set $i3l vstack to workspace $ws9
+set $i3l vstack to workspace $ws10
+
+# start i3bar
+bar {
+  status_command i3blocks
+}

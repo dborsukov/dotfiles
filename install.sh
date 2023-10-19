@@ -29,26 +29,20 @@ printf "%s Installing pistol for lf\n" "$GREEN"
 yay -S --noconfirm --needed go
 GOPATH=/home/$USERNAME/.go go install github.com/doronbehar/pistol/cmd/pistol@latest
 
-filemanagers="ffmpegthumbnailer file-roller gvfs lf poppler thunar thunar-archive-plugin"
-fonts="ttf-jetbrains-mono-nerd ttf-ms-win11-auto"
+de="xorg-server xterm xorg-xinit i3 i3blocks i3-layouts dunst lxsession scrot unclutter xss-lock pactl rofi lm_sensors sysstat feh"
+filemanagement="ffmpegthumbnailer file-roller gvfs lf poppler thunar thunar-archive-plugin udiskie udisks2"
+fonts="ttf-jetbrains-mono-nerd"
 media="mpv viewnior zathura zathura-cb zathura-djvu zathura-pdf-mupdf"
-misc="firefox keepassxc lazygit megasync-bin telegram-desktop"
-system="pacman-contrib pamixer pipewire polkit-kde-agent wireplumber wl-clipboard xdg-desktop-portal-hyprland-git"
-system_gui="hyprland hyprpaper mako swayidle tofi waybar"
+musthave="firefox keepassxc lazygit megasync-bin telegram-desktop"
 terminal="autojump exa fd fish fzf inetutils kitty neovim ripgrep"
-themes="bibata-cursor-theme papirus-icon-theme"
-theming_dependencies="ghome-themes-extra gtk-engine-murrine nwg-look-bin qt5-wayland qt6-wayland"
 
 if ! yay -S --noconfirm \
-	"$filemanagers" \
+	"$de" \
+	"$essential" \
+	"$filemanagement" \
 	"$fonts" \
-	"$media" \
-	"$misc" \
-	"$system" \
-  "$system_gui" \
 	"$terminal" \
-	"$themes" \
-	"$theming_dependencies" \
+  "$media" \
 	2>&1 | tee -a $LOG; then
 	printf "%s Failed to install packages, check the install.log\n" "$RED"
 	exit 1
@@ -62,19 +56,17 @@ printf "Linking configs \n"
 
 mkdir "/home/$USERNAME/.config"
 
+LINK "$BUILDDIR/dotconfig/dunst" "/home/$USERNAME/.config"
 LINK "$BUILDDIR/dotconfig/fish" "/home/$USERNAME/.config"
 LINK "$BUILDDIR/dotconfig/git" "/home/$USERNAME/.config"
-LINK "$BUILDDIR/dotconfig/hypr" "/home/$USERNAME/.config"
+LINK "$BUILDDIR/dotconfig/i3" "/home/$USERNAME/.config"
+LINK "$BUILDDIR/dotconfig/i3blocks" "/home/$USERNAME/.config"
 LINK "$BUILDDIR/dotconfig/kitty" "/home/$USERNAME/.config"
 LINK "$BUILDDIR/dotconfig/lf" "/home/$USERNAME/.config"
-LINK "$BUILDDIR/dotconfig/mako" "/home/$USERNAME/.config"
 LINK "$BUILDDIR/dotconfig/mimeapps.list" "/home/$USERNAME/.config/"
 LINK "$BUILDDIR/dotconfig/mpv" "/home/$USERNAME/.config"
-LINK "$BUILDDIR/dotconfig/npm" "/home/$USERNAME/.config"
 LINK "$BUILDDIR/dotconfig/nvim" "/home/$USERNAME/.config"
-LINK "$BUILDDIR/dotconfig/python" "/home/$USERNAME/.config"
-LINK "$BUILDDIR/dotconfig/tofi" "/home/$USERNAME/.config"
-LINK "$BUILDDIR/dotconfig/waybar" "/home/$USERNAME/.config"
+LINK "$BUILDDIR/dotconfig/rofi" "/home/$USERNAME/.config"
 
 ###########################################  BLUETOOTH  ###########################################
 
