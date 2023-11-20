@@ -36,12 +36,12 @@ end
 
 # Fish prompt
 function fish_prompt
-    set_color brblack
+    set_color grey
     echo -n "["(date "+%H:%M")"] "
     set_color blue
     echo -n (hostname)
     if [ $PWD != $HOME ]
-        set_color brblack
+        set_color grey
         echo -n ':'
         set_color yellow
         echo -n (basename $PWD)
@@ -100,3 +100,4 @@ fish_add_path  $HOME/.cargo/bin
 fish_add_path  $HOME/.go/bin
 fish_add_path  $HOME/.local/bin
 fish_add_path  $HOME/.pub-cache/bin
+fish_add_path  $HOME/.config/rofi/scripts

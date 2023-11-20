@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+shopt -s extglob
+
+dir="/run/media/db/DATA/books"
+
+paths=( "$dir"/*.@(pdf|fb2|epub) )
+
+for i in "${!paths[@]}"; do
+  paths[$i]=$(basename "${paths[$i]}")
+done
+
+selected=$(printf '%s\n' "${paths[@]}" | rofi -dmenu -i)
+
+fullpath="$dir/$selected"
+
+if ! [ -f "$fullpath" ]; then
+  exit 1
+fi
+
+zathura "$fullpath"
+exit 0

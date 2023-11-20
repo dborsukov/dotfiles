@@ -7,5 +7,5 @@ image/png=sxiv.desktop
 text/html=firefox.desktop
 text/plain=nvim.desktop
 video/mp4=userapp-mpv-IGSC61.desktop;
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
+x-scheme-handler/http=thorium.desktop
+x-scheme-handler/https=thorium.desktop

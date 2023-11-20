@@ -1,17 +1,5 @@
 # Autostart
-exec --no-startup-id dunst
-exec --no-startup-id i3-layouts
-exec --no-startup-id lxsession
-exec --no-startup-id megasync
-exec --no-startup-id nm-applet
-exec --no-startup-id setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle -option caps:ctrl_modifier
-exec --no-startup-id udiskie
-exec --no-startup-id udisksctl mount -b /dev/sdc2
-exec --no-startup-id unclutter --root
-exec --no-startup-id xrandr -s 1920x1080 -r 60
-exec --no-startup-id xset r rate 200 25
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec --no-startup-id ~/.fehbg
+# exec kitty
 
 # Variables
 set $terminal kitty
@@ -40,8 +28,8 @@ hide_edge_borders smart
 # Bindings
 bindsym $mod+Shift+q kill
 bindsym $mod+Return exec $terminal
-bindsym $mod+p exec --no-startup-id rofi -show drun
-bindsym $mod+Shift+p exec --no-startup-id rofi -show run
+bindsym $mod+p exec --no-startup-id fish -c "rofi -show drun"
+bindsym $mod+Shift+p exec --no-startup-id fish -c "rofi -show run"
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -53,6 +41,8 @@ bindsym $mod+Shift+j exec i3l move down
 bindsym $mod+Shift+k exec i3l move up
 bindsym $mod+Shift+l exec i3l move right
 
+bindsym $mod+s exec i3l vstack
+bindsym $mod+t exec i3l tabbed
 bindsym $mod+f fullscreen toggle
 
 bindsym $mod+Shift+space floating toggle
