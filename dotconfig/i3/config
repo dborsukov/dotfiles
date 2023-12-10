@@ -1,15 +1,15 @@
 # Autostart
+exec --no-startup-id dunst
 exec --no-startup-id i3-layouts
 exec --no-startup-id kwalletd5
 exec --no-startup-id lxsession
+exec --no-startup-id megasync
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id nm-applet
 exec --no-startup-id udiskie
 exec --no-startup-id unclutter --root
 exec --no-startup-id xsettingsd
 exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh
-exec dunst
-exec megasync
-exec nm-applet
 
 # Variables
 set $terminal kitty
