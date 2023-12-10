@@ -1,11 +1,27 @@
+# vim:ft=conf
 [Default Applications]
-application/pdf=org.pwmt.zathura.desktop
-application/x-ms-dos-executable=wine.desktop;
-image/jpeg=sxiv.desktop
-image/jpg=sxiv.desktop
-image/png=sxiv.desktop
-text/html=firefox.desktop
-text/plain=nvim.desktop
+# Filesystem
+inode/directory=pcmanfm.desktop;
+# Schemes
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+# Archives
+application/x-7z-compressed=org.kde.ark.desktop
+application/x-compressed-tar=org.kde.ark.desktop
+application/x-tar=org.kde.ark.desktop
+application/zip=org.kde.ark.desktop
+# Images
+image/jpeg=nsxiv.desktop
+image/jpg=nsxiv.desktop
+image/png=nsxiv.desktop
+image/webp=nsxiv.desktop
+# Videos
+image/gif=mp4=userapp-mpv-IGSC61.desktop
+video/avi=userapp-mpv-IGSC61.desktop;
 video/mp4=userapp-mpv-IGSC61.desktop;
-x-scheme-handler/http=thorium.desktop
-x-scheme-handler/https=thorium.desktop
+video/webm=userapp-mpv-IGSC61.desktop;
+# Documents
+application/pdf=org.pwmt.zathura.desktop
+# Other
+application/x-ms-dos-executable=wine.desktop;
+
