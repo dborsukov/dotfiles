@@ -2,7 +2,7 @@
 [global]
     monitor = 0
     follow = none
-    width = 300
+    width = 400
     height = 150
     origin = top-right
     offset = 10x10
@@ -21,7 +21,7 @@
     # Set the minimum width for the progress bar
     progress_bar_min_width = 150
     # Set the maximum width for the progress bar
-    progress_bar_max_width = 300
+    progress_bar_max_width = 400
     # Corner radius for the progress bar. 0 disables rounded corners.
     progress_bar_corner_radius = 0
     # Corner radius for the icon image.
@@ -63,7 +63,7 @@
     separator_color = frame
     # Sort messages by urgency.
     sort = yes
-    font = JetBrainsMono Nerd Font 10
+    font = Ubuntu 10
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
     line_height = 0
@@ -127,7 +127,7 @@
     # define all lookup paths.
     enable_recursive_icon_lookup = true
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = Adwaita
+    icon_theme = Papirus
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
     # Align icons left/right/top/off
@@ -137,9 +137,7 @@
     # max_icon_size takes precedence over this.
     min_icon_size = 32
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 64
-    # Paths to default icons (only neccesary when not using recursive icon lookup)
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    max_icon_size = 96
     ### History ###
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
