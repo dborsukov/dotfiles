@@ -10,6 +10,7 @@ makepkg -si
 ```
 
 3. Run `install.sh`
-4. Manualy install:
+4. Manual steps:
 
-    - latest `node` and `npm` using `nvm` (for neovim)
+    - Install latest `node` and `npm` using `nvm` (for neovim)
+    - Add `Option "AutoRepeat" "200 40"` to `/etc/X11/xorg.conf.d/00-keyboard.conf`
