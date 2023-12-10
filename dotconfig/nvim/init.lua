@@ -17,7 +17,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup('plugins')
+require('lazy').setup({
+  { import = 'plugins' },
+  { import = 'addons' },
+})
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
