@@ -1,5 +1,9 @@
 fish_vi_key_bindings
 
+if command -v nsxiv > /dev/null
+    abbr -a iv 'nsxiv'
+end
+
 if command -v trash > /dev/null
     abbr -a rm 'trash'
 end
