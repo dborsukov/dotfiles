@@ -1,14 +1,17 @@
 fish_vi_key_bindings
 
+if command -v trash > /dev/null
+    abbr -a rm 'trash'
+end
+
 if command -v exa > /dev/null
-    abbr -a l 'exa --group-directories-first'
     abbr -a ls 'exa --group-directories-first'
     abbr -a ll 'exa -l --group-directories-first'
-    abbr -a lll 'exa -la --group-directories-first'
+    abbr -a lla 'exa -la --group-directories-first'
 else
-    abbr -a l 'ls'
+    abbr -a ls 'ls'
     abbr -a ll 'ls -l'
-    abbr -a lll 'ls -la'
+    abbr -a lla 'ls -la'
 end
 
 if test -f /usr/share/autojump/autojump.fish;
