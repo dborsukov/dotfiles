@@ -1,9 +1,4 @@
 # Autostart
-exec --no-startup-id xrandr -s 1920x1080 -r 60
-
-exec --no-startup-id udisksctl mount -t ntfs -b /dev/sda1
-exec --no-startup-id udisksctl mount -t ntfs -b /dev/sdc3
-
 exec --no-startup-id i3-layouts
 exec --no-startup-id kwalletd5
 exec --no-startup-id lxsession
