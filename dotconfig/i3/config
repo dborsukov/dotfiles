@@ -1,5 +1,20 @@
 # Autostart
-# exec kitty
+exec --no-startup-id xrandr -s 1920x1080 -r 60
+
+exec --no-startup-id udisksctl mount -t ntfs -b /dev/sda1
+exec --no-startup-id udisksctl mount -t ntfs -b /dev/sdc3
+
+exec --no-startup-id i3-layouts
+exec --no-startup-id kwalletd5
+exec --no-startup-id lxsession
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id udiskie
+exec --no-startup-id unclutter --root
+exec --no-startup-id xsettingsd
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh
+exec dunst
+exec megasync
+exec nm-applet
 
 # Variables
 set $terminal kitty
@@ -19,7 +34,7 @@ set $ws9 "9"
 set $ws10 "10"
 
 # Settings
-font pango:JetBrainsMono Nerd Font 8
+font pango:Ubuntu Mono 9
 floating_modifier $mod
 tiling_drag modifier titlebar
 default_border pixel
@@ -30,6 +45,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Return exec $terminal
 bindsym $mod+p exec --no-startup-id fish -c "rofi -show drun"
 bindsym $mod+Shift+p exec --no-startup-id fish -c "rofi -show run"
+bindsym $mod+Mod1+l exec --no-startup-id ~/.config/i3/lock.sh
+bindsym --release $mod+F12 exec --no-startup-id ~/.config/i3/xprop.sh
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -47,6 +64,7 @@ bindsym $mod+f fullscreen toggle
 
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
+bindsym $mod+c move position center
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3blocks_volume
 bindsym $mod+Mod1+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3blocks_volume
@@ -93,6 +111,9 @@ set $i3l vstack to workspace $ws7
 set $i3l vstack to workspace $ws8
 set $i3l vstack to workspace $ws9
 set $i3l vstack to workspace $ws10
+
+# Rules
+#for_window [class="JDownloader"] floating enable
 
 # start i3bar
 bar {
