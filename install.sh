@@ -128,5 +128,8 @@ fi
 
 printf "\n%s Installation Completed.\n" "$GREEN"
 
+printf "Applying x11 keyboard settings"
+localectl set-x11-keymap us,ru,ua pc105 qwerty grp:alt_shift_toggle,caps:ctrl_modifier
+
 printf "Changing shell to fish\n"
 chsh -s $(which fish)
