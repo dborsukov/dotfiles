@@ -1,11 +1,12 @@
 ## Installation
 
 1. Install arch using `archinstall` with `minimal` config
-2. Install `base-devel`, then install `yay`:
+2. Install `base-devel`, then install `paru`:
 
 ```
-git clone https://aur.archlinux.org/yay-bin
-cd yay-bin
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru
 makepkg -si
 ```
 
