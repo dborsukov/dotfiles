@@ -55,6 +55,10 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 -- Better completion experience
 vim.o.completeopt = 'menuone,noselect'
+-- Treesitter powered folding
+vim.wo.foldenable = false
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- NOP for map leader
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
