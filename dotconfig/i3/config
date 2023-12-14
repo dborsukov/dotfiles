@@ -106,8 +106,11 @@ set $i3l vstack to workspace $ws8
 set $i3l vstack to workspace $ws9
 set $i3l vstack to workspace $ws10
 
-# Rules
+# Generic rules
 #for_window [class="JDownloader"] floating enable
+
+# Machince specific rules
+include msr.conf
 
 # start i3bar
 bar {
