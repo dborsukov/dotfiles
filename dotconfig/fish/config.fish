@@ -1,5 +1,9 @@
 fish_vi_key_bindings
 
+if command -v lazygit > /dev/null
+    abbr -a lg 'lazygit'
+end
+
 if command -v nsxiv > /dev/null
     abbr -a iv 'nsxiv'
 end
