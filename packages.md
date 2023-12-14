@@ -28,8 +28,6 @@ zathura
 # Secrets
 gnupg
 libsecret
- + kwallet5
- + kwalletmanager
 
 # Terminal
 autojump
