@@ -33,6 +33,7 @@ libsecret
 autojump
 exa
 fish
+ + inetutils
 kitty
 lazygit
 lf
