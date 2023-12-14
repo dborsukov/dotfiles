@@ -29,7 +29,7 @@ GOPATH=/home/$USERNAME/.go go install github.com/doronbehar/pistol/cmd/pistol@la
 # more details in markdown file itself.
 packages=$(sed '/^#/d;s/+//;s/^[[:space:]]*//' packages.md)
 
-if ! paru -S $packages; then
+if ! paru -S --noconfirm $packages; then
 	printf "%s Failed to install packages\n" "$RED"
     exit 1
 fi
@@ -69,8 +69,8 @@ read -n1 -rep "${CAT} OPTIONAL - Install Bluetooth packages? (y/n)" BLUETOOTH
 if [[ $BLUETOOTH =~ ^[Yy]$ ]]; then
 	printf "Installing Bluetooth Packages...\n"
 	pkgs="bluez bluez-utils blueman"
-	if ! yay -S --noconfirm $pkgs 2>&1 | tee -a $LOG; then
-		printf "%s Failed to install bluetooth packages, check the install.log" "$RED"
+	if ! paru -S --noconfirm $pkgs ; then
+		printf "%s Failed to install bluetooth packages" "$RED"
 		sleep 2
 	fi
 	printf "Activating Bluetooth Services...\n"
@@ -85,8 +85,8 @@ read -n1 -rep "${CAT} OPTIONAL - Install printing packages? (y/n)" PRINTING
 if [[ $PRINTING =~ ^[Yy]$ ]]; then
 	printf "Installing printing packages...\n"
 	pkgs="cups gutenprint foomatic-db-gutenprint-ppds"
-	if ! yay -S --noconfirm $pkgs 2>&1 | tee -a $LOG; then
-		printf "%s Failed to install printing packages, check the install.log" "$RED"
+	if ! paru -S --noconfirm $pkgs; then
+		printf "%s Failed to install printing packages" "$RED"
 		sleep 2
 	fi
 	printf "Activating printing services...\n"
@@ -101,8 +101,8 @@ read -n1 -rep "${CAT} OPTIONAL - Install virtualization packages? (y/n)" VIRTUAL
 if [[ $VIRTUALIZATION =~ ^[Yy]$ ]]; then
 	printf "Installing virtualization packages...\n"
 	pkgs="qemu virt-manager virt-viewer vde2 dmidecode dnsmasq bridge-utils openbsd-netcat libguestfs"
-	if ! yay -S --noconfirm $pkgs 2>&1 | tee -a $LOG; then
-		printf "%s Failed to install virtualization packages, check the install.log" "$RED"
+	if ! paru -S --noconfirm $pkgs; then
+		printf "%s Failed to install virtualization packages" "$RED"
 		sleep 2
 	fi
 	printf "Activating virtualization services...\n"
