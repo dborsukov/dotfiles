@@ -6,10 +6,10 @@ inode/directory=pcmanfm.desktop;
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 # Archives
-application/x-7z-compressed=org.kde.ark.desktop
-application/x-compressed-tar=org.kde.ark.desktop
-application/x-tar=org.kde.ark.desktop
-application/zip=org.kde.ark.desktop
+application/x-7z-compressed=engrampa.desktop
+application/x-compressed-tar=engrampa.desktop
+application/x-tar=engrampa.desktop
+application/zip=engrampa.desktop
 # Images
 image/jpeg=nsxiv.desktop
 image/jpg=nsxiv.desktop

@@ -64,7 +64,7 @@ xsettingsd
 pcmanfm-gtk3
  + ffmpegthumbnailer
  + gvfs
-ark
+engrampa
 udiskie
 udisks2
 
