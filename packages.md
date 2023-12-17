@@ -7,6 +7,7 @@
 firefox
 keepassxc
 megasync-bin
+mousepad
 mpv
 neovim
  + fd
