@@ -60,6 +60,7 @@ ln -s "$BUILDDIR/dotconfig/nvim"           "/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/paru"		   "/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/rofi"           "/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/xsettingsd"     "/home/$USERNAME/.config/"
+ln -s "$BUILDDIR/dotconfig/zathura"        "/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/.Xresources"              "/home/$USERNAME/.Xresources"
 ln -s "$BUILDDIR/.xinitrc"                 "/home/$USERNAME/.xinitrc"
 
