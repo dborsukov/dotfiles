@@ -32,6 +32,7 @@ libsecret
 
 # Terminal
 autojump
+broot
 exa
 fish
  + inetutils
