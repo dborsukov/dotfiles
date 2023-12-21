@@ -162,6 +162,29 @@ mason_lspconfig.setup_handlers {
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
+  ['efm'] = function()
+    require('lspconfig').efm.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      init_options = {
+        documentFormatting = true,
+        documentRangeFormatting = true,
+      },
+      settings = {
+        rootMarkers = { '.git/' },
+        languages = {
+          bash = {
+            require('efmls-configs.formatters.shfmt'),
+            require('efmls-configs.linters.shellcheck'),
+          },
+          python = {
+            require('efmls-configs.formatters.black'),
+          }
+        },
+      },
+      filetypes = { 'sh', 'python' },
+    }
+  end,
 }
 
 -- Autocompletion setup
