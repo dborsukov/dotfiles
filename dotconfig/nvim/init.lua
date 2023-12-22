@@ -22,9 +22,6 @@ require('lazy').setup({
   { import = 'addons' },
 })
 
--- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
-
 -- Enable 24-bit colors
 vim.o.termguicolors = true
 -- Enable mouse
@@ -85,7 +82,15 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
-local on_attach = function(_, bufnr)
+-- Enable telescope fzf native, if installed
+pcall(require('telescope').load_extension, 'fzf')
+
+require('lsp-format').setup()
+
+local on_attach = function(client, bufnr)
+  require('lsp-format').on_attach(client, bufnr)
+  vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -105,12 +110,6 @@ local on_attach = function(_, bufnr)
 
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-  require('lsp-format').setup({})
-
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
 end
 
 -- Register existing key chains
