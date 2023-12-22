@@ -1,7 +1,7 @@
 [user]
 	name = Denis Borsukov
-	email = denys.borsukov@gmail.com
-	signingkey = 678A89B300DE5EA2D986837CCE9F216DBDA4E98B
+	email = borsukov@proton.me
+	signingkey = 11D989B43A51E2B1763870CB7E7511C411AB7178
 [core]
 	editor = nvim
 [init]
