@@ -1,0 +1,18 @@
+#!/bin/bash
+# Description: search apps by categories
+# Dependencies: none
+
+set -euo pipefail
+
+all_cats=$(grep -rh "Categories=" "/usr/share/applications" | cut -d '=' -f2)
+
+# shellcheck disable=SC2086
+IFS=';' read -ra unique <<< "$(echo $all_cats | tr -d ' ')"
+
+cat=$(printf '%s\n' "${unique[@]}" | sort -u | rofi -dmenu -i)
+
+[[ -z "$cat" ]] && exit 1
+
+rofi -drun-categories "$cat" -show drun
+
+exit 0

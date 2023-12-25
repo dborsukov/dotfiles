@@ -39,6 +39,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Return exec $terminal
 bindsym $mod+p exec --no-startup-id fish -c "rofi -show drun"
 bindsym $mod+Shift+p exec --no-startup-id fish -c "rofi -show run"
+bindsym $mod+Ctrl+p exec --no-startup-id ~/.config/rofi/scripts/rofi-drun-cats
 bindsym $mod+Mod1+l exec --no-startup-id ~/.config/i3/lock.sh
 bindsym --release $mod+F12 exec --no-startup-id ~/.config/i3/xprop.sh
 
