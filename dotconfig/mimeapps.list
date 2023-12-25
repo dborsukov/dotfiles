@@ -16,7 +16,7 @@ image/jpg=nsxiv.desktop
 image/png=nsxiv.desktop
 image/webp=nsxiv.desktop
 # Videos
-image/gif=mp4=userapp-mpv-IGSC61.desktop
+image/gif=userapp-mpv-IGSC61.desktop:
 video/avi=userapp-mpv-IGSC61.desktop;
 video/mp4=userapp-mpv-IGSC61.desktop;
 video/webm=userapp-mpv-IGSC61.desktop;

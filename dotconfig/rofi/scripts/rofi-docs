@@ -1,4 +1,6 @@
 #!/bin/bash
+# Description: searches 'dir' for docs and opens them
+# Dependencies: any pdf reader, zathura is recommended
 
 set -euo pipefail
 shopt -s extglob
@@ -8,7 +10,7 @@ dir="/run/media/db/DATA/books"
 paths=( "$dir"/*.@(pdf|fb2|epub) )
 
 for i in "${!paths[@]}"; do
-  paths[$i]=$(basename "${paths[$i]}")
+  paths[i]=$(basename "${paths[$i]}")
 done
 
 selected=$(printf '%s\n' "${paths[@]}" | rofi -dmenu -i)
