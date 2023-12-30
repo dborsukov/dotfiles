@@ -140,7 +140,7 @@ local servers = {
     },
   },
   pyright = {},
-  rust_analyzer = {},
+  -- INFO: rust_analyzer is handled by 'rust-tools' plugin
 }
 
 require('neodev').setup()
@@ -185,6 +185,13 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+require('rust-tools').setup({
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+})
 
 -- Autocompletion setup
 local cmp = require 'cmp'
