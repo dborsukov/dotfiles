@@ -50,11 +50,8 @@ xclip
 dunst
 i3-wm
  + i3-layouts
- + i3blocks
-    + alsa-utils
-    + lm_sensors
-    + sysstat
  + i3lock-color
+ + polybar
  + unclutter
  + xss-lock
 lxsession-gtk3
@@ -81,6 +78,7 @@ papirus-icon-theme
 
 # Fonts
 noto-fonts-emoji
+ttf-font-awesome
 ttf-iosevka-nerd
 ttf-iosevkaterm-nerd
 ttf-ubuntu-font-family

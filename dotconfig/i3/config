@@ -10,11 +10,12 @@ exec --no-startup-id unclutter --root
 exec --no-startup-id xsettingsd
 exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh
 
+exec_always --no-startup-id ~/.config/i3/polybar.sh
+
 # Variables
 set $terminal kitty
 
 set $mod Mod4
-set $refresh_i3blocks_volume pkill -RTMIN+10 i3blocks
 
 set $ws1 "1"
 set $ws2 "2"
@@ -56,17 +57,18 @@ bindsym $mod+Shift+l exec i3l move right
 bindsym $mod+s exec i3l vstack
 bindsym $mod+t exec i3l tabbed
 bindsym $mod+f fullscreen toggle
+bindsym $mod+b exec polybar-msg cmd toggle
 
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+c move position center
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3blocks_volume
-bindsym $mod+Mod1+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3blocks_volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3blocks_volume
-bindsym $mod+Mod1+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3blocks_volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3blocks_volume
-bindsym $mod+Mod1+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3blocks_volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym $mod+Mod1+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% &&
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym $mod+Mod1+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+Mod1+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -112,8 +114,3 @@ set $i3l vstack to workspace $ws10
 
 # Machince specific rules
 include msr.conf
-
-# start i3bar
-bar {
-  status_command i3blocks
-}
