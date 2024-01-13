@@ -105,6 +105,16 @@ set -x GOPATH $HOME/.go
 # Nvm
 set -x nvm_default_version latest
 
+# Bun
+set -x BUN_INSTALL "$HOME/.bun"
+set -x PATH $BUN_INSTALL/bin $PATH
+
+# pnpm
+set -gx PNPM_HOME "/home/db/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+
 # Path
 fish_add_path  $HOME/.bin
 fish_add_path  $HOME/.cargo/bin
@@ -112,3 +122,5 @@ fish_add_path  $HOME/.go/bin
 fish_add_path  $HOME/.local/bin
 fish_add_path  $HOME/.pub-cache/bin
 fish_add_path  $HOME/.config/rofi/scripts
+
+
