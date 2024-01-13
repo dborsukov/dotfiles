@@ -85,17 +85,27 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
-require('lsp-format').setup()
-
 local on_attach = function(client, bufnr)
-  require('lsp-format').on_attach(client, bufnr)
-  vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
-
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
     end
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
+
+  if client.supports_method('textDocument/formatting') then
+    local format_command = function()
+      vim.lsp.buf.format({ async = false })
+    end
+    nmap('<leader>f', format_command, '[F]ormat')
+    -- format on save
+    local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = augroup,
+      buffer = bufnr,
+      callback = format_command,
+    })
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -161,29 +171,6 @@ mason_lspconfig.setup_handlers {
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
-  ['efm'] = function()
-    require('lspconfig').efm.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      init_options = {
-        documentFormatting = true,
-        documentRangeFormatting = true,
-      },
-      settings = {
-        rootMarkers = { '.git/' },
-        languages = {
-          bash = {
-            require('efmls-configs.formatters.shfmt'),
-            require('efmls-configs.linters.shellcheck'),
-          },
-          python = {
-            require('efmls-configs.formatters.black'),
-          }
-        },
-      },
-      filetypes = { 'sh', 'python' },
-    }
-  end,
 }
 
 require('rust-tools').setup({
@@ -191,6 +178,22 @@ require('rust-tools').setup({
     on_attach = on_attach,
     capabilities = capabilities,
   }
+})
+
+-- Formatting
+local null_ls = require('null-ls')
+null_ls.setup({
+  on_attach = on_attach,
+  sources = {
+    -- Shell
+    null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.diagnostics.shellcheck,
+    -- Python
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
+    -- Prettier
+    null_ls.builtins.formatting.prettierd,
+  },
 })
 
 -- Autocompletion setup
