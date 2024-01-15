@@ -76,7 +76,7 @@ ln -s "$BUILDDIR/.Xresources"				"/home/$USERNAME/.Xresources"
 ln -s "$BUILDDIR/.xinitrc"					"/home/$USERNAME/.xinitrc"
 
 INFO "Applying X11 input settings"
-localectl set-x11-keymap us,ru,ua pc105 qwerty grp:alt_shift_toggle,caps:ctrl_modifier
+localectl set-x11-keymap us,ru,ua pc105 qwerty grp:win_space_toggle,caps:ctrl_modifier
 
 INFO "Changing shell to Fish"
 chsh -s "$(which fish)"
