@@ -297,3 +297,32 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.spell = true
   end,
 })
+
+-- Automatically change CWD when entering buffer
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = vim.api.nvim_create_augroup('MyAutoRoot', { clear = true }),
+  callback = function()
+    local root_names = {
+      '.git',
+      'Makefile',
+      'package.json',
+      'Cargo.toml',
+    }
+    -- Get directory path to start search from
+    local path = vim.api.nvim_buf_get_name(0)
+    if path == '' then
+      return
+    end
+    path = vim.fs.dirname(path)
+
+    -- Search upward for root directory
+    local root_file = vim.fs.find(root_names, { path = path, upward = true })[1]
+    if root_file == nil then
+      return
+    end
+    local root = vim.fs.dirname(root_file)
+
+    -- Set current directory
+    vim.fn.chdir(root)
+  end,
+})
