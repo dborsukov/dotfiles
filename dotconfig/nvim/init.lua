@@ -149,8 +149,13 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  svelte = {},
   pyright = {},
   -- INFO: rust_analyzer is handled by 'rust-tools' plugin
+  tailwindcss = {},
+  tsserver = {
+    filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'svelte' },
+  },
 }
 
 require('neodev').setup()
@@ -192,7 +197,9 @@ null_ls.setup({
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.isort,
     -- Prettier
-    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.prettierd.with({
+      filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'css', 'scss', 'svelte', 'less', 'html', 'json', 'jsonc', 'yaml', 'graphql' }
+    }),
   },
 })
 
