@@ -1,25 +1,39 @@
 -- vim: ts=2 sts=2 sw=2 et
 ---@diagnostic disable: missing-fields
 
+-- This should always be done before Lazy
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+-- Bootstrapping Lazy
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
+  vim.fn.system({
     'git',
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
     '--branch=stable',
     lazypath,
-  }
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-  { import = 'plugins' },
-  { import = 'addons' },
+require('lazy').setup('plugins', {
+  change_detection = { notify = false },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'tutor',
+        'tohtml',
+        'tarPlugin',
+        'zipPlugin',
+        'netrwPlugin',
+      },
+    },
+  },
 })
 
 -- Enable 24-bit colors
@@ -57,47 +71,45 @@ vim.wo.foldenable = false
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- NOP for map leader
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Neotree
 vim.keymap.set('n', '<tab>', '<cmd>Neotree toggle<cr>', { silent = true })
 -- Bufferline
 vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', '<cmd>BufferLineCycleNext<cr>', { silent = true })
 vim.keymap.set({ 'n', 'i', 'v' }, '<C-h>', '<cmd>BufferLineCyclePrev<cr>', { silent = true })
 vim.keymap.set({ 'n', 'i', 'v' }, '<C-q>', '<cmd>bd<cr>', { silent = true })
--- Diagnostics
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
--- Telescope powered stuff
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+-- Search
+vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = 'Fuzzy search buffer' })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = 'Files in CWD' })
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = 'Grep in CWD' })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').oldfiles, { desc = 'Recent files' })
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = 'Help' })
+vim.keymap.set('n', '<leader>sc', require('telescope.builtin').commands, { desc = 'Commands' })
+vim.keymap.set('n', '<leader>sC', require('telescope.builtin').command_history, { desc = 'Commands History' })
+vim.keymap.set('n', '<leader>sa', require('telescope.builtin').autocommands, { desc = 'Autocommands' })
 
--- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
+-- Register existing key chains
+require('which-key').register({
+  ['<leader>g'] = { name = 'Git', _ = 'which_key_ignore' },
+  ['<leader>s'] = { name = 'Search', _ = 'which_key_ignore' },
+  ['<leader>l'] = { name = 'More LSP', _ = 'which_key_ignore' },
+})
 
+-- Native fzf written in C, much faster
+require('telescope').load_extension('fzf')
+
+-- LSP config
 local on_attach = function(client, bufnr)
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
-
   if client.supports_method('textDocument/formatting') then
     local format_command = function()
-      vim.lsp.buf.format({ async = false })
+      vim.lsp.buf.format({
+        async = false,
+        -- never request 'tsserver' for formatting
+        filter = function(c)
+          return c.name ~= 'tsserver'
+        end,
+      })
     end
-    nmap('<leader>f', format_command, '[F]ormat')
+    vim.keymap.set('n', '<leader>f', format_command, { buffer = bufnr, desc = 'LSP: Format' })
     -- format on save
     local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -108,84 +120,104 @@ local on_attach = function(client, bufnr)
     })
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  if client.supports_method('textDocument/hover') then
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = 'LSP: Hover Documentation' })
+  end
 
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  if client.supports_method('textDocument/signatureHelp') then
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = 'LSP: Signature Documentation' })
+  end
 
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  if client.supports_method('textDocument/publishDiagnostics') then
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, { buffer = bufnr, desc = 'LSP: Next diagnostic' })
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_next, { buffer = bufnr, desc = 'LSP: Prev diagnostic' })
+    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { buffer = bufnr, desc = 'LSP: Float diagnostic' })
+    vim.keymap.set('n', '<leader>d', require('telescope.builtin').diagnostics, { buffer = bufnr, desc = 'LSP: List diagnostics' })
+  end
+
+  if client.supports_method('textDocument/rename') then
+    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = bufnr, desc = 'LSP: Rename' })
+  end
+
+  if client.supports_method('textDocument/definition') then
+    vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { buffer = bufnr, desc = 'LSP: Goto Definition' })
+  end
+
+  if client.supports_method('textDocument/implementation') then
+    vim.keymap.set('n', 'gI', require('telescope.builtin').lsp_implementations, { buffer = bufnr, desc = 'LSP: Goto Implementations' })
+  end
+
+  if client.supports_method('textDocument/references') then
+    vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { buffer = bufnr, desc = 'LSP: Goto References' })
+  end
+
+  if client.supports_method('textDocument/codeAction') then
+    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { buffer = bufnr, desc = 'Code action' })
+  end
 end
-
--- Register existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
-
--- LSP setup
-require('mason').setup()
-require('mason-lspconfig').setup()
-
-local servers = {
-  -- Available servers: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-  -- Configs: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-  -- These configs are also accessible with ':help lspconfig-all'
-  bashls = {},
-  clangd = {},
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-  svelte = {},
-  pyright = {},
-  -- INFO: rust_analyzer is handled by 'rust-tools' plugin
-  tailwindcss = {},
-  tsserver = {
-    filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'svelte' },
-  },
-}
-
-require('neodev').setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local mason_lspconfig = require 'mason-lspconfig'
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
+-- Available servers: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+-- Configs: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- These configs are also accessible with ':help lspconfig-all'
+local servers = {
+  bashls = {},
+  clangd = {},
+  lua_ls = {
+    Lua = {
+      format = { enable = false },
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+      diagnostics = {
+        enable = true,
+        globals = {
+          'vim',
+        },
+      },
+    },
+  },
+  svelte = {},
+  pyright = {},
+  tailwindcss = {
+    filetypes = {
+      'css',
+      'html',
+      'javascript',
+      'javascript.jsx',
+      'javascriptreact',
+      'postcss',
+      'sass',
+      'scss',
+      'svelte',
+      'typescript',
+      'typescript.tsx',
+      'typescriptreact',
+    },
+  },
+  tsserver = {
+    filetypes = {
+      'javascript',
+      'javascript.jsx',
+      'javascriptreact',
+      'svelte',
+      'typescript',
+      'typescript.tsx',
+      'typescriptreact',
+    },
+  },
 }
 
+-- Rust LSP with goodies
 require('rust-tools').setup({
   server = {
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  },
 })
 
--- Formatting
+-- Additional tools injected through "dummy" language server
 local null_ls = require('null-ls')
 null_ls.setup({
   on_attach = on_attach,
@@ -198,126 +230,44 @@ null_ls.setup({
     null_ls.builtins.formatting.isort,
     -- Prettier
     null_ls.builtins.formatting.prettierd.with({
-      filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'css', 'scss', 'svelte', 'less', 'html', 'json', 'jsonc', 'yaml', 'graphql' }
+      filetypes = {
+        'css',
+        'graphql',
+        'html',
+        'javascript',
+        'javascriptreact',
+        'json',
+        'jsonc',
+        'less',
+        'scss',
+        'svelte',
+        'typescript',
+        'typescriptreact',
+        'vue',
+        'yaml',
+      },
     }),
+    -- Lua
+    null_ls.builtins.formatting.stylua,
   },
 })
 
--- Autocompletion setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
+local mason_lspconfig = require('mason-lspconfig')
 
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
-  },
-  formatting = {
-    format = require('lspkind').cmp_format({
-      mode = 'symbol_text',
-    }),
-  },
-}
+mason_lspconfig.setup({
+  ensure_installed = vim.tbl_keys(servers),
+})
 
--- Treesitter setup, defered until first render to improve startup time
-vim.defer_fn(function()
-  require('nvim-treesitter.configs').setup {
-    auto_install = false,
-    ensure_installed = 'all',
-    highlight = { enable = true },
-    indent = { enable = true },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = '<c-space>',
-        node_incremental = '<c-space>',
-        scope_incremental = '<c-s>',
-        node_decremental = '<M-space>',
-      },
-    },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['aa'] = '@parameter.outer',
-          ['ia'] = '@parameter.inner',
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
-      },
-      move = {
-        enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
-        },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
-        },
-        goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
-        },
-        goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
-        },
-      },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
-    },
-  }
-end, 0)
+mason_lspconfig.setup_handlers({
+  function(server_name)
+    require('lspconfig')[server_name].setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = servers[server_name],
+      filetypes = (servers[server_name] or {}).filetypes,
+    })
+  end,
+})
 
 -- Highlight line/region on yank
 vim.api.nvim_create_autocmd('TextYankPost', {

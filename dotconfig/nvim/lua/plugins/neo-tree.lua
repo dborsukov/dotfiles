@@ -21,8 +21,8 @@ return {
           unstaged = '',
           staged = '',
           conflict = '',
-        }
-      }
+        },
+      },
     },
     filtered_items = {
       always_show = {
