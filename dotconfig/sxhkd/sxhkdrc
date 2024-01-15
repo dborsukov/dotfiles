@@ -1,0 +1,47 @@
+# vim: set ts=3
+
+# reload sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# terminal
+super + Return
+	kitty
+
+# launcher
+super + {p,shift+p,ctrl+p}
+	{rofi -show drun,rofi -show run, ~/.config/rofi/scripts/rofi-drun-cats}
+
+# lockscreen
+super + alt + l
+	~/.config/bspwm/lock.sh
+
+# volume control
+super + alt + {equal, minus, BackSpace}
+	pactl {set-sink-volume @DEFAULT_SINK@ +1%,\
+          set-sink-volume @DEFAULT_SINK@ -1%,\
+	       set-sink-mute @DEFAULT_SINK@ toggle}
+
+# quick xprop
+super + alt + x
+	~/.config/bspwm/xprop.sh
+
+# bspwm: restart bspwm
+super + alt + r
+	bspc wm -r
+
+# bspwm: close, kill node
+super + shift + {q,ctrl+q}
+	bspc node -{c,k}
+
+# bspwm: focus desktop or send node to it
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# bspwm: focus node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# bspwm: set node state
+super + {t,shift+f,f}
+	bspc node -t {tiled,floating,\~fullscreen}

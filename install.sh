@@ -56,6 +56,7 @@ INFO "Linking configs"
 
 if [ ! -d "/home/$USERNAME/.config" ]; then mkdir "/home/$USERNAME/.config"; fi
 
+ln -s "$BUILDDIR/dotconfig/bspwm"			"/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/dunst"			"/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/fish"			"/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/fontconfig"		"/home/$USERNAME/.config/"
@@ -70,6 +71,7 @@ ln -s "$BUILDDIR/dotconfig/nsxiv"			"/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/nvim"			"/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/paru"			"/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/rofi"			"/home/$USERNAME/.config/"
+ln -s "$BUILDDIR/dotconfig/sxhkd"			"/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/xsettingsd"		"/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/dotconfig/zathura"			"/home/$USERNAME/.config/"
 ln -s "$BUILDDIR/.Xresources"				"/home/$USERNAME/.Xresources"

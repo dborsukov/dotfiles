@@ -44,14 +44,15 @@ trash-cli
 # X Server/Apps
 xorg-server
 xorg-xinit
+xorg-xsetroot
 xclip
 
 # Window manager + environment
 dunst
-i3-wm
- + i3-layouts
+bspwm
  + i3lock-color
  + polybar
+ + sxhkd
  + unclutter
  + xss-lock
 lxsession-gtk3

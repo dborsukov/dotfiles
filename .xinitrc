@@ -9,7 +9,9 @@ fi
 
 udisksctl mount -t ntfs -b /dev/sda1
 udisksctl mount -t ntfs -b /dev/sdc3
+
+xsetroot -cursor_name left_ptr
 xrandr -s 1920x1080 -r 60
 xrdb -merge ~/.Xresources
 
-exec i3
+exec bspwm

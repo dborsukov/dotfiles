@@ -115,6 +115,9 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 
+# sxhkd
+set -x SXHKD_SHELL /usr/bin/bash
+
 # Path
 fish_add_path  $HOME/.bin
 fish_add_path  $HOME/.cargo/bin

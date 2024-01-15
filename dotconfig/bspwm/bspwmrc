@@ -1,0 +1,27 @@
+#!/bin/sh
+
+pgrep -x sxhkd >/dev/null || sxhkd &
+
+pgrep -x dunst >/dev/null || dunst &
+pgrep -x lxsession >/dev/null || lxsession &
+pgrep -x megasync >/dev/null || megasync &
+pgrep -x nm-applet >/dev/null || nm-applet &
+pgrep -x polybar >/dev/null || polybar main &
+pgrep -x udiskie >/dev/null || udiskie &
+pgrep -x unclutter >/dev/null || unclutter --root &
+pgrep -x xsettingsd >/dev/null || xsettingsd &
+pgrep -x xss-lock >/dev/null || xss-lock --transfer-sleep-lock -- ~/.config/bspwm/lock.sh &
+
+nitrogen --restore
+
+wmname LG3D
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+bspc config window_gap 0
+bspc config border_width 1
+
+bspc config split_ratio 0.5
+
+bspc config single_monocle true
+bspc config borderless_monocle true
