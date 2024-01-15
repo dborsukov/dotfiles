@@ -1,6 +1,5 @@
 # vim: nospell
-# Declare each package on new line.
-# You can add any amount of space before or after package name.
+# Declare each new package on new line.
 # To enumerate dependencies use plus sign surrounded by any amount of spaces.
 
 # Essentials
