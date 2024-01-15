@@ -10,7 +10,7 @@ WARNING() { printf '{{ Foreground "#cc9900" "%s" }}\n' "$1" | gum format -t temp
 CRITICAL() { printf '{{ Color "#ffffff" "#ff0000" "%s" }}\n' "$1" | gum format -t template; }
 
 if [ ! -f "/sbin/paru" ] || [ ! -f "/sbin/gum" ]; then
-	CRITICAL "This scripts requires 'paru' and 'gum' to be installed!"
+	echo "This scripts requires 'paru' and 'gum' to be installed!"
 	exit 0
 fi
 
