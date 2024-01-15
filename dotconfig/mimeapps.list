@@ -21,7 +21,9 @@ video/avi=userapp-mpv-IGSC61.desktop;
 video/mp4=userapp-mpv-IGSC61.desktop;
 video/webm=userapp-mpv-IGSC61.desktop;
 # Documents
+text/html=firefox.desktop
 application/pdf=org.pwmt.zathura.desktop
 # Other
 application/x-ms-dos-executable=wine.desktop;
+x-scheme-handler/postman=Postman.desktop
 
