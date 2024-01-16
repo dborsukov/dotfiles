@@ -80,19 +80,19 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', '<cmd>BufferLineCycleNext<cr>', { sil
 vim.keymap.set({ 'n', 'i', 'v' }, '<C-h>', '<cmd>BufferLineCyclePrev<cr>', { silent = true })
 vim.keymap.set({ 'n', 'i', 'v' }, '<C-q>', '<cmd>bd<cr>', { silent = true })
 -- Search
-vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = 'Fuzzy search buffer' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = 'Files in CWD' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = 'Grep in CWD' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').oldfiles, { desc = 'Recent files' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = 'Help' })
-vim.keymap.set('n', '<leader>sc', require('telescope.builtin').commands, { desc = 'Commands' })
-vim.keymap.set('n', '<leader>sC', require('telescope.builtin').command_history, { desc = 'Commands History' })
-vim.keymap.set('n', '<leader>sa', require('telescope.builtin').autocommands, { desc = 'Autocommands' })
+vim.keymap.set('n', '<leader>f/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = 'Text in buffer' })
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = 'Text in CWD' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Files' })
+vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = 'Recent files' })
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Help' })
+vim.keymap.set('n', '<leader>fc', require('telescope.builtin').commands, { desc = 'Commands' })
+vim.keymap.set('n', '<leader>fC', require('telescope.builtin').command_history, { desc = 'Recent commands' })
+vim.keymap.set('n', '<leader>fa', require('telescope.builtin').autocommands, { desc = 'Autocommands' })
 
 -- Register existing key chains
 require('which-key').register({
   ['<leader>g'] = { name = 'Git', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = 'Search', _ = 'which_key_ignore' },
+  ['<leader>f'] = { name = 'Find', _ = 'which_key_ignore' },
   ['<leader>l'] = { name = 'More LSP', _ = 'which_key_ignore' },
 })
 
