@@ -3,6 +3,8 @@ return {
   'hrsh7th/nvim-cmp',
   dependencies = {
     -- Pictograms for completion categories
+    -- Snippet engine
+    { 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp' },
     'onsails/lspkind.nvim',
     -- Source: LSP
     'hrsh7th/cmp-nvim-lsp',
@@ -11,6 +13,7 @@ return {
   },
   config = function()
     local cmp = require('cmp')
+    local luasnip = require('luasnip')
     cmp.setup({
       mapping = cmp.mapping.preset.insert({
         ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -26,6 +29,11 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'path' },
+      },
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
       },
       formatting = {
         format = require('lspkind').cmp_format({
