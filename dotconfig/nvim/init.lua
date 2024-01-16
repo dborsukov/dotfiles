@@ -88,12 +88,17 @@ vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { des
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = 'Text in CWD' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Help' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = 'Recent files' })
+-- Session
+vim.keymap.set('n', '<leader>ss', '<cmd>SessionManager save_current_session<cr>', { desc = 'Save' })
+vim.keymap.set('n', '<leader>sl', '<cmd>SessionManager load_session<cr>', { desc = 'Load' })
+vim.keymap.set('n', '<leader>sd', '<cmd>SessionManager delete_session<cr>', { desc = 'Delete' })
 
 -- Register existing key chains
 require('which-key').register({
   ['<leader>f'] = { name = 'Find', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = 'Git', _ = 'which_key_ignore' },
   ['<leader>l'] = { name = 'More LSP', _ = 'which_key_ignore' },
+  ['<leader>s'] = { name = 'Session', _ = 'which_key_ignore' },
 })
 
 -- Native fzf written in C, much faster
