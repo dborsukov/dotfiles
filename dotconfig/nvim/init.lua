@@ -71,6 +71,8 @@ vim.wo.foldenable = false
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
+-- Fast ESC
+vim.keymap.set('i', 'jk', '<Esc>', { silent = true })
 -- Neotree
 vim.keymap.set('n', '<tab>', '<cmd>Neotree toggle<cr>', { silent = true })
 -- Bufferline
