@@ -116,7 +116,7 @@ local on_attach = function(client, bufnr)
         end,
       })
     end
-    vim.keymap.set('n', '<leader>f', format_command, { buffer = bufnr, desc = 'LSP: Format' })
+    vim.keymap.set('n', '<leader>lf', format_command, { buffer = bufnr, desc = 'Format' })
     -- format on save
     local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
