@@ -9,9 +9,6 @@ set previewer ~/.config/lf/previewer
 map x $"$f"
 map X !"$f"
 
-map o &mimeopen "$f"
-map O $mimeopen --ask "$f"
-
 map d trash
 cmd trash &{{
     mapfile -t files < <(printf %s "$fx")

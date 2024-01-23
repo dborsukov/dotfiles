@@ -20,6 +20,8 @@ obsidian
 scrot
 snapd
 telegram-desktop
+xdg-utils-handlr
+ + handlr
 zathura
  + zathura-cb
  + zathura-djvu
