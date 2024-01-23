@@ -186,6 +186,7 @@ local servers = {
     },
   },
   svelte = {},
+  taplo = {},
   pyright = {},
   tailwindcss = {
     filetypes = {
