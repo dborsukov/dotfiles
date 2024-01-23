@@ -1,5 +1,7 @@
 fish_vi_key_bindings
 
+abbr -a lf '~/.config/lf/lf-img'
+
 if command -v lazygit > /dev/null
     abbr -a lg 'lazygit'
 end

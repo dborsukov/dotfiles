@@ -38,6 +38,16 @@ fish
 kitty
 lazygit
 lf
+ + jq
+ + ueberzugpp
+ + atool
+ + poppler
+ + djvulibre
+ + pandoc
+ + lynx
+ + imagemagick
+ + source-highlight
+ + ffmpegthumbnailer
 trash-cli
 
 # X Server/Apps

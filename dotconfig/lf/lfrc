@@ -1,4 +1,38 @@
+set drawbox
 set scrolloff 10
+set shell sh
+set shellopts '-eu'
 
 set cleaner ~/.config/lf/cleaner
 set previewer ~/.config/lf/previewer
+
+map x $"$f"
+map X !"$f"
+
+map o &mimeopen "$f"
+map O $mimeopen --ask "$f"
+
+map d trash
+cmd trash &{{
+    mapfile -t files < <(printf %s "$fx")
+    trash-put "${files[@]}"
+}}
+
+map D delete
+cmd delete &{{
+    mapfile -t files < <(printf %s "$fx")
+    rm -rf "${files[@]}"
+}}
+
+map E extract
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf "$f";;
+        *.tar.gz|*.tgz) tar xzvf "$f";;
+        *.tar.xz|*.txz) tar xJvf "$f";;
+        *.zip) unzip "$f";;
+        *.rar) unrar x "$f";;
+        *.7z) 7z x "$f";;
+    esac
+}}
