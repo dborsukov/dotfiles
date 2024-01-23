@@ -14,4 +14,4 @@ xsetroot -cursor_name left_ptr
 xrandr -s 1920x1080 -r 60
 xrdb -merge ~/.Xresources
 
-exec bspwm
+exec ssh-agent dbus-launch bspwm
