@@ -9,13 +9,14 @@ set previewer ~/.config/lf/previewer
 map x $"$f"
 map X !"$f"
 
-map d trash
+cmd autojump %lf -remote "send $id cd '$(autojump $1 | sed 's/\\/\\\\/g;s/"/\\"/g')'"
+map J push :autojump<space>
+
 cmd trash &{{
     mapfile -t files < <(printf %s "$fx")
     trash-put "${files[@]}"
 }}
 
-map D delete
 cmd delete &{{
     mapfile -t files < <(printf %s "$fx")
     rm -rf "${files[@]}"
