@@ -1,0 +1,51 @@
+[[item]]
+template = 'dunst'
+subtemplate = 'default'
+file = '~/.config/dunst/dunstrc'
+hook = 'killall dunst'
+rewrite = true
+
+[[item]]
+template = 'fish'
+subtemplate = 'default'
+file = '~/.config/fish/theme.fish'
+rewrite = true
+
+[[item]]
+template = 'kitty'
+subtemplate = 'default-256'
+file = '~/.config/kitty/theme.conf'
+hook = 'pkill -USR1 kitty'
+rewrite = true
+
+[[item]]
+template = 'nvim'
+subtemplate = 'default'
+file = '~/.config/nvim/lua/plugins/base16.lua'
+rewrite = true
+
+[[item]]
+template = 'polybar'
+subtemplate = 'default'
+file = '~/.config/polybar/colors.ini'
+hook = 'polybar-msg cmd restart'
+rewrite = true
+
+[[item]]
+template = 'rofi'
+subtemplate = 'default'
+file = '~/.config/rofi/theme.rasi'
+rewrite = true
+
+[[item]]
+template = 'xresources'
+subtemplate = 'default-256'
+file = '~/.xresources'
+hook = 'xrdb ~/.xresources'
+rewrite = true
+
+[[item]]
+template = 'zathura'
+subtemplate = 'default'
+file = '~/.config/zathura/theme.conf'
+rewrite = true

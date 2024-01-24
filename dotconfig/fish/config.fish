@@ -20,6 +20,9 @@ function fish_prompt
     set_color normal
 end
 
+# base16 theme
+source ~/.config/fish/theme.fish
+
 # path
 fish_add_path  $HOME/.bin
 fish_add_path  $HOME/.cargo/bin
