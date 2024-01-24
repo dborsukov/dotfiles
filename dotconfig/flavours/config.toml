@@ -6,12 +6,6 @@ hook = 'killall dunst'
 rewrite = true
 
 [[item]]
-template = 'fish'
-subtemplate = 'default'
-file = '~/.config/fish/theme.fish'
-rewrite = true
-
-[[item]]
 template = 'kitty'
 subtemplate = 'default-256'
 file = '~/.config/kitty/theme.conf'
