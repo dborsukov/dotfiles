@@ -1,4 +1,10 @@
 [[item]]
+template = 'bspwm'
+subtemplate = 'default'
+file = '~/.config/bspwm/bspwmrc'
+hook = 'bspc wm -r'
+
+[[item]]
 template = 'dunst'
 subtemplate = 'default'
 file = '~/.config/dunst/dunstrc'
