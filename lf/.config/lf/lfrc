@@ -14,7 +14,7 @@ map J push :autojump<space>
 
 cmd trash &{{
     mapfile -t files < <(printf %s "$fx")
-    trash-put "${files[@]}"
+    trash put "${files[@]}"
 }}
 
 cmd delete &{{
