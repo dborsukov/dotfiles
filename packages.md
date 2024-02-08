@@ -61,11 +61,9 @@ xclip
 # Window manager + environment
 dunst
 bspwm
- + i3lock-color
  + polybar
  + sxhkd
  + unclutter
- + xss-lock
 lxsession-gtk3
 network-manager-applet
 rofi
