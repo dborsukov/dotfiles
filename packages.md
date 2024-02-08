@@ -70,10 +70,13 @@ rofi
 xsettingsd
 
 # File system management
-pcmanfm-gtk3
- + ffmpegthumbnailer
- + gvfs
 engrampa
+thunar
+ + gvfs
+ + tumbler
+ + ffmpegthumbnailer
+ + thunar-archive-plugin
+ + thunar-media-tags-plugin
 udiskie
 udisks2
 
