@@ -24,7 +24,11 @@ super + alt + {equal, minus, BackSpace}
 
 # quick xprop
 super + alt + x
-	~/.config/bspwm/xprop.sh
+	~/.config/sxhkd/xprop.sh
+
+# quick wininfo
+super + alt + w
+	~/.config/sxhkd/xwininfo.sh
 
 # bspwm: restart bspwm
 super + alt + r
