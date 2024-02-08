@@ -3,6 +3,7 @@ with import <nixpkgs> {};
 {
   packages = [
     # gui
+    flameshot
     gedit
     keepassxc 
     megasync
@@ -21,7 +22,6 @@ with import <nixpkgs> {};
     inetutils
     kitty
     lazygit
-    scrot
     trashy
     # neovim + deps
     neovim
