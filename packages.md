@@ -63,6 +63,7 @@ dunst
 bspwm
  + polybar
  + sxhkd
+   + yad
  + unclutter
 lxsession-gtk3
 network-manager-applet
@@ -84,8 +85,8 @@ udisks2
 qt5ct
 kvantum
 nwg-look
-arc-gtk-theme
 xcursor-human
+gnome-themes-extra
 papirus-icon-theme
  + hicolor-icon-theme
 
