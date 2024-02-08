@@ -13,7 +13,29 @@ return {
       lualine_a = { 'mode' },
       lualine_b = { 'filename' },
       lualine_c = { 'branch', 'diff' },
-      lualine_x = { 'diagnostics', 'encoding', 'fileformat', 'filetype' },
+      lualine_x = {
+        'diagnostics',
+        {
+          'location',
+          padding = 0,
+        },
+        {
+          'fileformat',
+          symbols = {
+            unix = 'unix',
+            dos = 'dos',
+            mac = 'mac',
+          },
+        },
+        {
+          'filetype',
+          padding = {
+            left = 0,
+            right = 1,
+          },
+          icon = { align = 'left' },
+        },
+      },
       lualine_y = {},
       lualine_z = {},
     },
