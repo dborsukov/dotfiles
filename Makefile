@@ -4,5 +4,5 @@ all:
 delete:
 	stow --verbose --target=$$HOME --delete */
 
-pkgs:
-	sed '/^#/d;s/+//;s/^[[:space:]]*//' packages.md > /tmp/pkglist
+install-packages:
+	NIXPKGS_ALLOW_UNFREE=1 NIXPKGS_ALLOW_INSECURE=1 nix-env -f packages.nix -iA packages

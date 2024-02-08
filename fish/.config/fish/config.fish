@@ -26,6 +26,7 @@ fish_add_path  $HOME/.cargo/bin
 fish_add_path  $HOME/.go/bin
 fish_add_path  $HOME/.local/bin
 fish_add_path  $HOME/.pub-cache/bin
+fish_add_path  $HOME/.nix-profile/bin
 fish_add_path  $HOME/.config/rofi/scripts
 
 # aliases & abbreviations
@@ -53,6 +54,7 @@ set -x XDG_CACHE_HOME $HOME/.cache
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x XDG_DATA_HOME $HOME/.local/share
 set -x XDG_STATE_HOME $HOME/.local/state
+set -x XDG_DATA_DIRS $HOME/.nix-profile/share $XDG_DATA_DIRS
 # xdg-ninja
 set -x ANDROID_HOME $XDG_DATA_HOME/android
 set -x GNUPGHOME $XDG_DATA_HOME/gnupg
