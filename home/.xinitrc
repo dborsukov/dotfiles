@@ -10,6 +10,7 @@ fi
 
 udisksctl mount -t ntfs -b /dev/sda1
 udisksctl mount -t ntfs -b /dev/sdc3
+udisksctl mount -t ntfs -b /dev/sdb4
 
 xsetroot -cursor_name left_ptr
 xrandr -s 1920x1080 -r 60
