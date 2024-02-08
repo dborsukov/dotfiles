@@ -31,7 +31,6 @@ fish_add_path  $HOME/.config/rofi/scripts
 # aliases & abbreviations
 abbr -a lf '~/.config/lf/lf-img'
 if command -v nsxiv > /dev/null; abbr -a iv 'nsxiv'; end
-if command -v trash > /dev/null; abbr -a rm 'trash'; end
 if command -v lazygit > /dev/null; abbr -a lg 'lazygit'; end
 if command -v exa > /dev/null
     abbr -a ls 'exa --group-directories-first'
