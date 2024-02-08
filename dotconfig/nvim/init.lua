@@ -1,4 +1,3 @@
--- vim: ts=2 sts=2 sw=2 et
 ---@diagnostic disable: missing-fields
 
 -- This should always be done before Lazy
@@ -97,7 +96,7 @@ vim.keymap.set('n', '<leader>sd', '<cmd>SessionManager delete_session<cr>', { de
 require('which-key').register({
   ['<leader>f'] = { name = 'Find', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = 'Git', _ = 'which_key_ignore' },
-  ['<leader>l'] = { name = 'More LSP', _ = 'which_key_ignore' },
+  ['<leader>l'] = { name = 'LSP', _ = 'which_key_ignore' },
   ['<leader>s'] = { name = 'Session', _ = 'which_key_ignore' },
 })
 
@@ -118,32 +117,32 @@ local on_attach = function(client, bufnr)
     end
     vim.keymap.set('n', '<leader>lf', format_command, { buffer = bufnr, desc = 'Format' })
     -- format on save
-    local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = augroup,
-      buffer = bufnr,
-      callback = format_command,
-    })
+    -- local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+    -- vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    -- vim.api.nvim_create_autocmd('BufWritePre', {
+    --   group = augroup,
+    --   buffer = bufnr,
+    --   callback = format_command,
+    -- })
   end
 
   if client.supports_method('textDocument/hover') then
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = 'LSP: Hover Documentation' })
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = 'Hover Documentation' })
   end
 
   if client.supports_method('textDocument/signatureHelp') then
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = 'LSP: Signature Documentation' })
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = 'Signature Documentation' })
   end
 
   if client.supports_method('textDocument/publishDiagnostics') then
     vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, { buffer = bufnr, desc = 'LSP: Next diagnostic' })
     vim.keymap.set('n', '[d', vim.diagnostic.goto_next, { buffer = bufnr, desc = 'LSP: Prev diagnostic' })
-    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { buffer = bufnr, desc = 'LSP: Float diagnostic' })
-    vim.keymap.set('n', '<leader>d', require('telescope.builtin').diagnostics, { buffer = bufnr, desc = 'LSP: List diagnostics' })
+    vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, { buffer = bufnr, desc = 'Float diagnostic' })
+    vim.keymap.set('n', '<leader>ld', require('telescope.builtin').diagnostics, { buffer = bufnr, desc = 'List diagnostics' })
   end
 
   if client.supports_method('textDocument/rename') then
-    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = bufnr, desc = 'LSP: Rename' })
+    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { buffer = bufnr, desc = 'Rename' })
   end
 
   if client.supports_method('textDocument/definition') then
