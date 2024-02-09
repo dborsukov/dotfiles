@@ -43,6 +43,7 @@ abbr -a e 'eza --git --group-directories-first'
 set -x EDITOR 'nvim'
 set -x VISUAL 'nvim'
 set -x SXHKD_SHELL /usr/bin/bash
+set -x QT_QPA_PLATFORMTHEME qt5ct
 
 set -x XDG_CACHE_HOME $HOME/.cache
 set -x XDG_CONFIG_HOME $HOME/.config
