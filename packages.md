@@ -1,34 +1,26 @@
-# vim: nospell
-# Declare each new package on new line.
-# Comments and empty lines will be removed.
-# Use plus symbol to enumerate dependencies.
-
-# Essentials
-ungoogled-chromium-bin
-keepassxc
-megasync-bin
+# Graphical
+engrampa
+flameshot
 gedit
-handlr
+keepassxc
+kitty
+megasync-bin
 mpv
-neovim
- + fd
- + fzf
- + ripgrep
- + tree-sitter-cli
 nitrogen
 nsxiv
 obsidian
- + pandoc
-flameshot
 telegram-desktop
+thunar
+ + ffmpegthumbnailer
+ + gvfs
+ + thunar-archive-plugin
+ + thunar-media-tags-plugin
+ + tumbler
+ungoogled-chromium-bin
 zathura
  + zathura-cb
  + zathura-djvu
  + zathura-pdf-mupdf
-
-# Secrets
-gnupg
-libsecret
 
 # Terminal
 autojump
@@ -36,50 +28,49 @@ broot
 eza
 fish
  + inetutils
-kitty
+handlr
 lazygit
 lf
- + jq
- + ueberzugpp
  + atool
- + poppler
  + djvulibre
- + pandoc
- + lynx
- + imagemagick
- + source-highlight
  + ffmpegthumbnailer
+ + imagemagick
+ + jq
+ + lynx
+ + pandoc
+ + poppler
+ + source-highlight
+ + ueberzugpp
+neovim
+ + fd
+ + fzf
+ + ripgrep
+ + tree-sitter-cli
 trashy
+udiskie
+udisks2
 
-# X Server/Apps
-xorg-server
-xorg-xinit
-xorg-xsetroot
-xorg-xwininfo
-xclip
+# Secrets
+gnupg
+openssh
+libsecret
 
-# Window manager + environment
-dunst
+# X + WM + Environment
 bspwm
  + polybar
    + pacman-contrib
  + sxhkd
    + yad
+   + xorg-xwininfo
  + unclutter
+dunst
 lxsession-gtk3
 network-manager-applet
 rofi
-
-# File system management
-engrampa
-thunar
- + gvfs
- + tumbler
- + ffmpegthumbnailer
- + thunar-archive-plugin
- + thunar-media-tags-plugin
-udiskie
-udisks2
+xclip
+xorg-server
+xorg-xinit
+xorg-xsetroot
 
 # Eye candy
 qt5ct
@@ -95,3 +86,4 @@ ttf-font-awesome
 otf-comicshanns-nerd
 ttf-ubuntu-font-family
 
+# vim: nospell
