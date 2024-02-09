@@ -1,12 +1,14 @@
 # vim: nospell
 # Declare each new package on new line.
-# To enumerate dependencies use plus sign surrounded by any amount of spaces.
+# Comments and empty lines will be removed.
+# Use plus symbol to enumerate dependencies.
 
 # Essentials
-firefox
+ungoogled-chromium-bin
 keepassxc
 megasync-bin
-mousepad
+gedit
+handlr
 mpv
 neovim
  + fd
@@ -17,11 +19,8 @@ nitrogen
 nsxiv
 obsidian
  + pandoc
-scrot
-snapd
+flameshot
 telegram-desktop
-xdg-utils-handlr
- + handlr
 zathura
  + zathura-cb
  + zathura-djvu
@@ -34,7 +33,7 @@ libsecret
 # Terminal
 autojump
 broot
-exa
+eza
 fish
  + inetutils
 kitty
@@ -50,7 +49,7 @@ lf
  + imagemagick
  + source-highlight
  + ffmpegthumbnailer
-trash-cli
+trashy
 
 # X Server/Apps
 xorg-server
@@ -62,13 +61,13 @@ xclip
 dunst
 bspwm
  + polybar
+   + pacman-contrib
  + sxhkd
    + yad
  + unclutter
 lxsession-gtk3
 network-manager-applet
 rofi
-xsettingsd
 
 # File system management
 engrampa
@@ -85,15 +84,13 @@ udisks2
 qt5ct
 kvantum
 nwg-look
-xcursor-human
+xcursor-comix
 gnome-themes-extra
 papirus-icon-theme
- + hicolor-icon-theme
 
 # Fonts
 noto-fonts-emoji
 ttf-font-awesome
-ttf-iosevka-nerd
-ttf-iosevkaterm-nerd
+otf-comicshanns-nerd
 ttf-ubuntu-font-family
 
