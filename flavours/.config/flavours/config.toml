@@ -40,8 +40,8 @@ rewrite = true
 [[item]]
 template = 'xresources'
 subtemplate = 'default-256'
-file = '~/.xresources'
-hook = 'xrdb ~/.xresources'
+file = '~/.Xresources'
+hook = 'xrdb ~/.Xresources'
 rewrite = true
 
 [[item]]
