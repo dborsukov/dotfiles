@@ -55,6 +55,7 @@ trashy
 xorg-server
 xorg-xinit
 xorg-xsetroot
+xorg-xwininfo
 xclip
 
 # Window manager + environment
