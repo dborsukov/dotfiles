@@ -1,7 +1,7 @@
-This repo uses [stow][] to manage the symlinks, and [nix][] to manage packages.  
-Some dotfiles are generated using [flavours][] directly, to avoid duplication.  
-All important commands can be found in the `Makefile`.
+This repo uses [stow][] to manage the symlinks.  
+Some dotfiles are generated during "runtime" by [flavours][].  
+All important commands(recipes) can be found in the `Justfile`([website][]).
 
 [stow]: https://www.gnu.org/software/stow/
-[nix]: https://github.com/NixOS/nix
 [flavours]: https://github.com/Misterio77/flavours
+[website]: https://just.systems/
