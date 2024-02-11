@@ -44,14 +44,12 @@ set -x EDITOR 'nvim'
 set -x VISUAL 'nvim'
 set -x SXHKD_SHELL /usr/bin/bash
 set -x QT_QPA_PLATFORMTHEME qt5ct
+set -x CARGO_TARGET_DIR $HOME/.cargo_target_dir
 
 set -x XDG_CACHE_HOME $HOME/.cache
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x XDG_DATA_HOME $HOME/.local/share
 set -x XDG_STATE_HOME $HOME/.local/state
-
-set -x RUST_BACKTRACE 1
-set -x CARGO_TARGET_DIR $HOME/.cargo_target_dir
 
 # autostart x
 if status is-login
