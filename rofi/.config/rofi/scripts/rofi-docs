@@ -5,7 +5,7 @@
 set -euo pipefail
 shopt -s extglob
 
-dir="/run/media/db/DATA/books"
+dir=$ROFI_SCRIPTS_DOCS_DIR
 
 paths=( "$dir"/*.@(pdf|fb2|epub) )
 
