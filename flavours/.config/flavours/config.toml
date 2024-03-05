@@ -21,7 +21,7 @@ rewrite = true
 [[item]]
 template = 'nvim'
 subtemplate = 'default'
-file = '~/.config/nvim/lua/plugins/base16.lua'
+file = '~/.config/nvim/lua/plugins/mini-base16.lua'
 rewrite = true
 
 [[item]]

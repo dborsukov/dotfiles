@@ -1,9 +1,8 @@
--- Autocomplete
 return {
   'hrsh7th/nvim-cmp',
   dependencies = {
     -- Snippet engine
-    { 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp' },
+    'dcampos/nvim-snippy',
     -- Pictograms
     'onsails/lspkind.nvim',
     -- Source: LSP
@@ -13,7 +12,8 @@ return {
   },
   config = function()
     local cmp = require('cmp')
-    local luasnip = require('luasnip')
+
+    vim.o.completeopt = 'menuone,noselect'
 
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
@@ -57,7 +57,7 @@ return {
       },
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          require('snippy').expand_snippet(args.body)
         end,
       },
       formatting = {

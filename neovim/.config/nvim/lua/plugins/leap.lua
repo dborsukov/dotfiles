@@ -1,4 +1,3 @@
--- Fast and easy movement
 return {
   'ggandor/leap.nvim',
   config = function()

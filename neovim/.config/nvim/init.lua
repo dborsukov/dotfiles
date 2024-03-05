@@ -1,11 +1,10 @@
----@diagnostic disable: missing-fields
+---@diagnostic disable: missing-fields, empty-block
 
 -- This should always be done before Lazy
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
+vim.keymap.set({ 'n', 'v' }, ',', '<Nop>', { silent = true })
 
--- Bootstrapping Lazy
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -24,106 +23,86 @@ require('lazy').setup('plugins', {
   performance = {
     rtp = {
       disabled_plugins = {
+        'man',
         'gzip',
         'tutor',
         'tohtml',
+        'matchit',
+        'rplugin',
         'tarPlugin',
         'zipPlugin',
+        'matchparen',
         'netrwPlugin',
       },
     },
   },
 })
 
--- Enable 24-bit colors
-vim.o.termguicolors = true
--- Enable mouse
-vim.o.mouse = 'a'
--- No line wrapping
-vim.wo.wrap = false
--- Sane scrolloff
 vim.o.scrolloff = 7
--- Enable line numbers
-vim.wo.number = true
--- Save undo history
-vim.bo.undofile = true
--- Who uses swap?
 vim.o.swapfile = false
--- Disable search highlight
 vim.o.hlsearch = false
--- No tabs, please
-vim.bo.expandtab = true
--- Default colorcolumn
-vim.wo.colorcolumn = '100'
--- Case-insensitive searching unless \C or capital in search
+vim.o.timeoutlen = 200
 vim.o.smartcase = true
 vim.o.ignorecase = true
--- Sign column always on
+vim.o.termguicolors = true
+
+vim.bo.undofile = true
+vim.bo.expandtab = true
+
+vim.wo.wrap = false
+vim.wo.number = true
 vim.wo.signcolumn = 'yes'
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
--- Better completion experience
-vim.o.completeopt = 'menuone,noselect'
--- Treesitter powered folding
-vim.wo.foldenable = false
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.colorcolumn = '100'
+vim.wo.relativenumber = true
 
--- Fast ESC
-vim.keymap.set('i', 'jk', '<Esc>', { silent = true })
--- Neotree
-vim.keymap.set('n', '<tab>', '<cmd>Neotree toggle<cr>', { silent = true })
--- Bufferline
-vim.keymap.set({ 'n', 'i', 'v' }, '<C-h>', '<cmd>BufferLineCyclePrev<cr>', { silent = true })
-vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', '<cmd>BufferLineCycleNext<cr>', { silent = true })
-vim.keymap.set({ 'n', 'i', 'v' }, '<C-q>', '<cmd>bd<cr>', { silent = true })
--- Find
-vim.keymap.set('n', '<leader>f/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = 'Text in buffer' })
-vim.keymap.set('n', '<leader>fC', require('telescope.builtin').command_history, { desc = 'Recent commands' })
-vim.keymap.set('n', '<leader>fa', require('telescope.builtin').autocommands, { desc = 'Autocommands' })
-vim.keymap.set('n', '<leader>fc', require('telescope.builtin').commands, { desc = 'Commands' })
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Files' })
-vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = 'Text in CWD' })
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Help' })
-vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = 'Recent files' })
--- Session
-vim.keymap.set('n', '<leader>ss', '<cmd>SessionManager save_current_session<cr>', { desc = 'Save' })
-vim.keymap.set('n', '<leader>sl', '<cmd>SessionManager load_session<cr>', { desc = 'Load' })
-vim.keymap.set('n', '<leader>sd', '<cmd>SessionManager delete_session<cr>', { desc = 'Delete' })
-
--- Register existing key chains
-require('which-key').register({
-  ['<leader>f'] = { name = 'Find', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = 'Git', _ = 'which_key_ignore' },
-  ['<leader>l'] = { name = 'LSP', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = 'Session', _ = 'which_key_ignore' },
-})
-
--- Native fzf written in C, much faster
 require('telescope').load_extension('fzf')
 
--- LSP config
+vim.keymap.set('i', 'jk', '<Esc>', { silent = true })
+vim.keymap.set('n', '<C-q>', '<cmd>bd<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'File manager' })
+vim.keymap.set('n', '<leader>.', require('telescope.builtin').buffers, { desc = 'Buffers' })
+vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = 'Fuzzy find' })
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').live_grep, { desc = 'Grep workdir' })
+
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = 'Help' })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = 'Files' })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').oldfiles, { desc = 'Recent files' })
+vim.keymap.set('n', '<leader>sc', require('telescope.builtin').commands, { desc = 'Commands' })
+vim.keymap.set('n', '<leader>sa', require('telescope.builtin').autocommands, { desc = 'Autocommands' })
+vim.keymap.set('n', '<leader>sC', require('telescope.builtin').command_history, { desc = 'Recent commands' })
+
+require('which-key').register({
+  ['<leader>s'] = { name = 'Search', _ = 'which_key_ignore' },
+  ['<leader>l'] = { name = 'LSP', _ = 'which_key_ignore' },
+})
+
+vim.diagnostic.config({
+  signs = false,
+  underline = true,
+  virtual_text = false,
+})
+
+local function enhanced_float_handler(handler)
+  return function(err, result, ctx, config)
+    handler(
+      err,
+      result,
+      ctx,
+      vim.tbl_deep_extend('force', config or {}, {
+        border = vim.g.floating_window_border,
+        max_height = math.floor(vim.o.lines * 0.5),
+        max_width = math.floor(vim.o.columns * 0.4),
+      })
+    )
+  end
+end
+
+vim.lsp.handlers['textDocument/hover'] = enhanced_float_handler(vim.lsp.handlers.hover)
+vim.lsp.handlers['textDocument/signatureHelp'] = enhanced_float_handler(vim.lsp.handlers.signature_help)
+
 local on_attach = function(client, bufnr)
   if client.supports_method('textDocument/formatting') then
-    local format_command = function()
-      vim.lsp.buf.format({
-        async = false,
-        -- never request 'tsserver' for formatting
-        filter = function(c)
-          return c.name ~= 'tsserver'
-        end,
-      })
-    end
-    vim.keymap.set('n', '<leader>lf', format_command, { buffer = bufnr, desc = 'Format' })
-    -- format on save
-    -- local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-    -- vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    -- vim.api.nvim_create_autocmd('BufWritePre', {
-    --   group = augroup,
-    --   buffer = bufnr,
-    --   callback = format_command,
-    -- })
+    -- handled by conform.nvim
   end
 
   if client.supports_method('textDocument/hover') then
@@ -135,10 +114,10 @@ local on_attach = function(client, bufnr)
   end
 
   if client.supports_method('textDocument/publishDiagnostics') then
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, { buffer = bufnr, desc = 'LSP: Next diagnostic' })
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_next, { buffer = bufnr, desc = 'LSP: Prev diagnostic' })
-    vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, { buffer = bufnr, desc = 'Float diagnostic' })
-    vim.keymap.set('n', '<leader>ld', require('telescope.builtin').diagnostics, { buffer = bufnr, desc = 'List diagnostics' })
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { buffer = bufnr, desc = 'LSP: Next diagnostic' })
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { buffer = bufnr, desc = 'LSP: Prev diagnostic' })
+    vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { buffer = bufnr, desc = 'Line diagnostics' })
+    vim.keymap.set('n', '<leader>ld', require('telescope.builtin').diagnostics, { buffer = bufnr, desc = 'Open diagnostics' })
   end
 
   if client.supports_method('textDocument/rename') then
@@ -162,15 +141,13 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
 -- Available servers: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 -- Configs: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- These configs are also accessible with ':help lspconfig-all'
 local servers = {
   bashls = {},
   clangd = {},
+  gopls = {},
   lua_ls = {
     Lua = {
       format = { enable = false },
@@ -184,87 +161,15 @@ local servers = {
       },
     },
   },
-  svelte = {},
-  taplo = {},
   pyright = {},
-  tailwindcss = {
-    filetypes = {
-      'css',
-      'html',
-      'javascript',
-      'javascript.jsx',
-      'javascriptreact',
-      'postcss',
-      'sass',
-      'scss',
-      'svelte',
-      'typescript',
-      'typescript.tsx',
-      'typescriptreact',
-    },
-  },
-  tsserver = {
-    filetypes = {
-      'javascript',
-      'javascript.jsx',
-      'javascriptreact',
-      'svelte',
-      'typescript',
-      'typescript.tsx',
-      'typescriptreact',
-    },
-  },
+  rust_analyzer = {},
 }
 
--- Rust LSP with goodies
-require('rust-tools').setup({
-  server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  },
-})
-
--- Additional tools injected through "dummy" language server
-local null_ls = require('null-ls')
-null_ls.setup({
-  on_attach = on_attach,
-  sources = {
-    -- Shell
-    null_ls.builtins.formatting.shfmt,
-    null_ls.builtins.diagnostics.shellcheck,
-    -- Python
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort,
-    -- Prettier
-    null_ls.builtins.formatting.prettierd.with({
-      filetypes = {
-        'css',
-        'graphql',
-        'html',
-        'javascript',
-        'javascriptreact',
-        'json',
-        'jsonc',
-        'less',
-        'scss',
-        'svelte',
-        'typescript',
-        'typescriptreact',
-        'vue',
-        'yaml',
-      },
-    }),
-    -- Lua
-    null_ls.builtins.formatting.stylua,
-  },
-})
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local mason_lspconfig = require('mason-lspconfig')
-
-mason_lspconfig.setup({
-  ensure_installed = vim.tbl_keys(servers),
-})
-
+mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(servers) })
 mason_lspconfig.setup_handlers({
   function(server_name)
     require('lspconfig')[server_name].setup({
@@ -273,63 +178,5 @@ mason_lspconfig.setup_handlers({
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     })
-  end,
-})
-
--- Highlight line/region on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
--- Close some filetypes with <q>
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('CloseWithQ', { clear = true }),
-  pattern = { 'man', 'help', 'lspinfo', 'startuptime', 'checkhealth' },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
-  end,
-})
-
--- Wrap lines and check for spelling in text filetypes
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('TextFiletypeWrapAndSpelling', { clear = true }),
-  pattern = { 'gitcommit', 'markdown' },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
-
--- Automatically change CWD when entering buffer
-vim.api.nvim_create_autocmd('BufEnter', {
-  group = vim.api.nvim_create_augroup('MyAutoRoot', { clear = true }),
-  callback = function()
-    local root_names = {
-      '.git',
-      'Makefile',
-      'package.json',
-      'Cargo.toml',
-    }
-    -- Get directory path to start search from
-    local path = vim.api.nvim_buf_get_name(0)
-    if path == '' then
-      return
-    end
-    path = vim.fs.dirname(path)
-
-    -- Search upward for root directory
-    local root_file = vim.fs.find(root_names, { path = path, upward = true })[1]
-    if root_file == nil then
-      return
-    end
-    local root = vim.fs.dirname(root_file)
-
-    -- Set current directory
-    vim.fn.chdir(root)
   end,
 })

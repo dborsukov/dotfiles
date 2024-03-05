@@ -1,4 +1,3 @@
--- Multi-puprose fuzzy finder
 return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
@@ -10,7 +9,7 @@ return {
     defaults = {
       mappings = {
         i = {
-          ['<Esc>'] = 'close', -- disables normal mode
+          ['<Esc>'] = 'close',
           ['<C-j>'] = 'move_selection_next',
           ['<C-k>'] = 'move_selection_previous',
         },
