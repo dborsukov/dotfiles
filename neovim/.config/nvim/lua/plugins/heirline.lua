@@ -175,25 +175,25 @@ return {
       },
       {
         provider = function(self)
-          return self.errors .. ' '
+          return self.errors and 'e' .. self.errors
         end,
         hl = { fg = utils.get_highlight('DiagnosticError').fg, bold = true },
       },
       {
         provider = function(self)
-          return self.warnings .. ' '
+          return self.warnings and 'w' .. self.warnings
         end,
         hl = { fg = utils.get_highlight('DiagnosticWarn').fg, bold = true },
       },
       {
         provider = function(self)
-          return self.info .. ' '
+          return self.info > 0 and 'i' .. self.info
         end,
         hl = { fg = utils.get_highlight('DiagnosticInfo').fg, bold = true },
       },
       {
         provider = function(self)
-          return self.hints
+          return self.hints > 0 and 'n' .. self.hints
         end,
         hl = { fg = utils.get_highlight('DiagnosticHint').fg, bold = true },
       },
