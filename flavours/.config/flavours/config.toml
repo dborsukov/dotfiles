@@ -1,8 +1,9 @@
 [[item]]
 template = 'bspwm'
 subtemplate = 'default'
-file = '~/.config/bspwm/bspwmrc'
+file = '~/.config/bspwm/theme'
 hook = 'bspc wm -r'
+rewrite = true
 
 [[item]]
 template = 'dunst'
