@@ -109,6 +109,8 @@ return {
         self.head_exists = self.status_dict.head ~= ''
         self.has_changes = self.head_exists
           and (self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0)
+        self.untracked = self.head_exists
+          and (self.status_dict.added == nil or self.status_dict.removed == nil or self.status_dict.changed == nil)
       end,
 
       hl = { fg = 'orange' },
@@ -128,6 +130,14 @@ return {
           return self.has_changes
         end,
         provider = '(',
+        hl = { bold = true },
+      },
+      {
+        condition = function(self)
+          return self.untracked
+        end,
+        provider = 'untracked',
+        hl = { fg = 'red', bold = true },
       },
       {
         provider = function(self)
@@ -155,6 +165,7 @@ return {
           return self.has_changes
         end,
         provider = ')',
+        hl = { bold = true },
       },
     }
 
