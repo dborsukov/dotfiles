@@ -186,13 +186,13 @@ return {
       },
       {
         provider = function(self)
-          return self.errors and 'e' .. self.errors
+          return self.errors > 0 and 'e' .. self.errors
         end,
         hl = { fg = utils.get_highlight('DiagnosticError').fg, bold = true },
       },
       {
         provider = function(self)
-          return self.warnings and 'w' .. self.warnings
+          return self.warnings > 0 and 'w' .. self.warnings
         end,
         hl = { fg = utils.get_highlight('DiagnosticWarn').fg, bold = true },
       },
