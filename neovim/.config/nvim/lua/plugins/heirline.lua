@@ -106,14 +106,20 @@ return {
 
       init = function(self)
         self.status_dict = vim.b.gitsigns_status_dict
-        self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0
+        self.head_exists = self.status_dict.head ~= ''
+        self.has_changes = self.head_exists
+          and (self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0)
       end,
 
       hl = { fg = 'orange' },
 
       {
         provider = function(self)
-          return ' ' .. self.status_dict.head
+          if self.head_exists then
+            return ' ' .. self.status_dict.head
+          else
+            return ' [No HEAD]'
+          end
         end,
         hl = { bold = true },
       },
