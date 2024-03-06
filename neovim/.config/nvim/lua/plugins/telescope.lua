@@ -3,6 +3,7 @@ return {
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'nvim-tree/nvim-web-devicons',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   opts = {
@@ -11,7 +12,9 @@ return {
         i = {
           ['<Esc>'] = 'close',
           ['<C-j>'] = 'move_selection_next',
+          ['<Tab>'] = 'move_selection_next',
           ['<C-k>'] = 'move_selection_previous',
+          ['<S-Tab>'] = 'move_selection_previous',
         },
       },
       layout_strategy = 'horizontal',
