@@ -23,7 +23,6 @@ require('lazy').setup('plugins', {
   performance = {
     rtp = {
       disabled_plugins = {
-        'man',
         'gzip',
         'tutor',
         'tohtml',
@@ -58,7 +57,7 @@ vim.wo.relativenumber = true
 require('telescope').load_extension('fzf')
 
 vim.keymap.set('i', 'jk', '<Esc>', { silent = true })
-vim.keymap.set('n', '<C-q>', '<cmd>bd<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>q', '<cmd>bd<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'File manager' })
 vim.keymap.set('n', '<leader>.', require('telescope.builtin').buffers, { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = 'Fuzzy find' })
@@ -149,14 +148,21 @@ local servers = {
   clangd = {},
   gopls = {},
   lua_ls = {
-    Lua = {
-      format = { enable = false },
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-      diagnostics = {
-        enable = true,
-        globals = {
-          'vim',
+    settings = {
+      Lua = {
+        format = { enable = false },
+        telemetry = { enable = false },
+        runtime = { version = 'LuaJIT' },
+        diagnostics = {
+          enable = true,
+          globals = { 'vim' },
+        },
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            '${3rd}/luv/library',
+            unpack(vim.api.nvim_get_runtime_file('', true)),
+          },
         },
       },
     },
@@ -165,18 +171,26 @@ local servers = {
   rust_analyzer = {},
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local ensure_installed = vim.tbl_keys(servers or {})
+vim.list_extend(ensure_installed, {
+  'black',
+  'isort',
+  'stylua',
+})
 
-local mason_lspconfig = require('mason-lspconfig')
-mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(servers) })
-mason_lspconfig.setup_handlers({
-  function(server_name)
-    require('lspconfig')[server_name].setup({
-      on_attach = on_attach,
-      capabilities = capabilities,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    })
-  end,
+require('mason').setup()
+require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+require('mason-lspconfig').setup({
+  handlers = {
+    function(server_name)
+      local server = servers[server_name] or {}
+      server.on_attach = on_attach
+      server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+      require('lspconfig')[server_name].setup(server)
+    end,
+  },
 })
