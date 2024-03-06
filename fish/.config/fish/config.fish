@@ -25,11 +25,8 @@ if test -f /usr/share/autojump/autojump.fish;
 end
 
 # path
-fish_add_path  $HOME/.bin
-fish_add_path  $HOME/.go/bin
-fish_add_path  $HOME/.cargo/bin
 fish_add_path  $HOME/.local/bin
-fish_add_path  $HOME/.pub-cache/bin
+fish_add_path  $HOME/.cargo/bin
 fish_add_path  $HOME/.config/rofi/scripts
 
 # aliases & abbreviations
@@ -44,7 +41,6 @@ set -x EDITOR 'nvim'
 set -x VISUAL 'nvim'
 set -x SXHKD_SHELL /usr/bin/bash
 set -x QT_QPA_PLATFORMTHEME qt5ct
-set -x CARGO_TARGET_DIR $HOME/.cargo_target_dir
 
 set -x XDG_CACHE_HOME $HOME/.cache
 set -x XDG_CONFIG_HOME $HOME/.config
