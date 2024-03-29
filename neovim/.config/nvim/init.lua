@@ -140,6 +140,12 @@ local on_attach = function(client, bufnr)
   end
 end
 
+vim.g.rustaceanvim = {
+  server = {
+    on_attach = on_attach,
+  },
+}
+
 -- Available servers: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 -- Configs: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- These configs are also accessible with ':help lspconfig-all'
@@ -168,7 +174,6 @@ local servers = {
     },
   },
   pyright = {},
-  rust_analyzer = {},
   ruff_lsp = {},
 }
 
@@ -176,6 +181,7 @@ local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
   'ruff',
   'stylua',
+  'prettier',
 })
 
 require('mason').setup()
