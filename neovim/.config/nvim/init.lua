@@ -169,12 +169,12 @@ local servers = {
   },
   pyright = {},
   rust_analyzer = {},
+  ruff_lsp = {},
 }
 
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
-  'black',
-  'isort',
+  'ruff',
   'stylua',
 })
 
