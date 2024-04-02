@@ -16,7 +16,13 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       python = { 'ruff_format' },
+      sh = { 'shfmt' },
       yaml = { 'prettier' },
+    },
+    formatters = {
+      shfmt = {
+        prepend_args = { '-i', '2' },
+      },
     },
   },
 }

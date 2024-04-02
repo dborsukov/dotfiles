@@ -152,7 +152,6 @@ vim.g.rustaceanvim = {
 local servers = {
   bashls = {},
   clangd = {},
-  gopls = {},
   lua_ls = {
     settings = {
       Lua = {
@@ -179,9 +178,11 @@ local servers = {
 
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
-  'ruff',
-  'stylua',
   'prettier',
+  'ruff',
+  'shfmt',
+  'shellcheck',
+  'stylua',
 })
 
 require('mason').setup()

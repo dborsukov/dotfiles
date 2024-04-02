@@ -1,5 +1,5 @@
 TAGS,PACKAGE,DESCRIPTION
-,xorg-xserver,Xserver
+,xorg-server,Xserver
 ,xorg-xinit,Xserver init script
 ,xorg-xsetroot,Xserver root window manager
 ,xdotool,Xserver command line automation
@@ -11,7 +11,8 @@ TAGS,PACKAGE,DESCRIPTION
 ,libnotify,Library for sending notifications
 ,lxsession-gtk3,Session manager
 ,ntfs-3g,NTFS filesystem driver and utilities
-,p7zip,Archive manipulation from cli
+,p7zip,"ZIP archive manager, and more"
+,unrar,RAR archive manager
 ,bspwm,Tiling window manager
 ,sxhkd,Hotkey daemon
 ,dunst,Notification daemon
@@ -23,12 +24,16 @@ TAGS,PACKAGE,DESCRIPTION
 ,ttf-font-awesome,Font with icons
 ,noto-fonts-emoji,Font with emojis
 A,ttf-jetbrains-mono-nerd,Monospace nerd-font
-,qt5ct,QT configuration utility
-,nwg-look,GTK configuration utility
-,nitrogen,Background setter for Xserver
+,kvantum-qt5,Theme engine for QT5
+,qt5ct,Configuration utility for QT5
+,kvantum,Theme engine for QT6
+,qt6ct,Configuration utility for QT6
+,nwg-look,Configuration utility for GTK
 ,gnome-themes-extra,Contains dark Adwaita GTK theme
 ,xcursor-comix,Cursor theme
 ,papirus-icon-theme,Icon theme
+,nitrogen,Background setter for Xserver
+A,flavours,Base16 theme generator
 ,gnupg,OpenPGP
 ,openssh,OpenSSH
 ,man-db,Provides manuals
@@ -47,6 +52,7 @@ A,autojump,Better cd
 ,zathura-pdf-mupdf,Zathura PDF support
 ,csvlens,CSV document viewer
 ,scrot,Screenshot tool
+,ncdu,Disk space management utility
 A,trashy,CLI trash manager
 A,handlr,Better xdg-utils
 A,xdg-utils-handlr,Fully replaces xdg-utils with handlr
@@ -54,11 +60,17 @@ A,xdg-utils-handlr,Fully replaces xdg-utils with handlr
 ,keepassxc,Password manager
 A,megacmd,Cloud access from command line
 A,ungoogled-chromium-bin,Web browser
+,python,Python programming language
+,python-pip,Python package manager
+,rustup,Rust toolchain installer
 ,libsecret,"Needed for: git, keepassxc"
 ,inetutils,Needed for: fish
 ,fd,Needed for: neovim
 ,fzf,Needed for: neovim
+,wget,Needed for: neovim
 ,ripgrep,Needed for: neovim
+,npm,Needed for: neovim
+,nodejs,Needed for: neovim
 ,tree-sitter-cli,Needed for: neovim
 ,atool,Needed for: lf
 ,djvulibre,Needed for: lf

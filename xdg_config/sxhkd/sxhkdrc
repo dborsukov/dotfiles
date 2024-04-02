@@ -6,15 +6,11 @@ super + Escape
 
 # terminal
 super + Return
-	kitty
+	alacritty
 
 # launcher
 super + {p,shift+p,ctrl+p}
-	{rofi -show drun,rofi -show run, ~/.config/rofi/scripts/rofi-drun-cats}
-
-# lockscreen
-super + alt + l
-	~/.config/bspwm/lock.sh
+	{rofi -show drun,rofi -show run, rofi-drun-categories}
 
 # volume control
 super + alt + {equal, minus, BackSpace}
@@ -23,12 +19,12 @@ super + alt + {equal, minus, BackSpace}
 	       set-sink-mute @DEFAULT_SINK@ toggle}
 
 # quick xprop
-super + alt + x
-	~/.config/sxhkd/xprop.sh
+super + alt + p
+	quick-xprop
 
 # quick wininfo
 super + alt + w
-	~/.config/sxhkd/xwininfo.sh
+	quick-xwininfo
 
 # bspwm: restart bspwm
 super + alt + r

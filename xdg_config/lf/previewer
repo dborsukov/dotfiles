@@ -22,7 +22,8 @@ draw() {
 
 hash() {
   printf '%s/.cache/lf/%s' "$HOME" \
-    "$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f -- "$1")" | sha256sum | cut -d' ' -f1)"
+    "$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- \
+      "$(readlink -f -- "$1")" | sha256sum | cut -d' ' -f1)"
 }
 
 cache() {
@@ -44,9 +45,13 @@ fi
 default_x="1920"
 default_y="1080"
 
-# Try to match using file extension
+#=================================================================================================#
+#                              Try to match using file extension                                  #
+#=================================================================================================#
+
 ext="$(printf '%s' "$file" | tr '[:upper:]' '[:lower:]')"
 ext="${ext##*.}"
+
 case "$ext" in
 7z | a | ace | alz | arc | arj | bz | bz2 | cab | cpio | deb | gz | jar | \
   lha | lrz | lz | lzh | lzma | lzo | rar | rpm | rz | t7z | tar | tbz | \
@@ -104,8 +109,12 @@ svg)
   ;;
 esac
 
-# Try to match using file mime type
+#=================================================================================================#
+#                              Try to match using file mime type                                  #
+#=================================================================================================#
+
 mime="$(file -Lb --mime-type -- "$file")"
+
 case "$mime" in
 text/*)
   source-highlight -q --outlang-def=esc.outlang --style-file=esc.style -i "$file" || cat -- "$file"
@@ -134,8 +143,10 @@ video/*)
   ;;
 esac
 
-# If nothing above matched, run `file` to get general file classification
-# 1. Pretty printing header text
+#=================================================================================================#
+#                 If nothing above matched, print general file classification                     #
+#=================================================================================================#
+
 header_text="File Type Classification"
 header=""
 len="$(((width - (${#header_text} + 2)) / 2))"
@@ -151,7 +162,6 @@ else
   header="$header_text"
 fi
 printf '\033[7m%s\033[0m\n' "$header"
-# 2. Actually printing the info
 file -Lb -- "$file" | fold -s -w "$width"
 
 exit 0

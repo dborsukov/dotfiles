@@ -1,4 +1,5 @@
 set drawbox
+set hidden
 set scrolloff 10
 set shell sh
 set shellopts '-eu'

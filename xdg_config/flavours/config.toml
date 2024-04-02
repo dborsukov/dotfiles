@@ -1,4 +1,10 @@
 [[item]]
+template = 'alacritty'
+subtemplate = 'default'
+file = '~/.config/alacritty/theme.toml'
+rewrite = true
+
+[[item]]
 template = 'bspwm'
 subtemplate = 'default'
 file = '~/.config/bspwm/theme'
@@ -10,13 +16,6 @@ template = 'dunst'
 subtemplate = 'default'
 file = '~/.config/dunst/dunstrc'
 hook = 'killall dunst'
-rewrite = true
-
-[[item]]
-template = 'kitty'
-subtemplate = 'default-256'
-file = '~/.config/kitty/theme.conf'
-hook = 'pkill -USR1 kitty'
 rewrite = true
 
 [[item]]

@@ -34,13 +34,18 @@ abbr -a v 'nvim'
 abbr -a lg 'lazygit'
 abbr -a tp 'trash put'
 abbr -a lf '~/.config/lf/lf-img'
-abbr -a e 'eza --git --group-directories-first'
+if command -q eza
+    abbr -a ls 'eza --group-directories-first'
+    abbr -a la 'eza --group-directories-first --all'
+    abbr -a ll 'eza --group-directories-first --long'
+    abbr -a lla 'eza --group-directories-first --long --all'
+end
 
 # environment
 set -x EDITOR 'nvim'
 set -x VISUAL 'nvim'
 set -x SXHKD_SHELL /usr/bin/bash
-set -x QT_QPA_PLATFORMTHEME qt5ct
+set -x QT_QPA_PLATFORMTHEME qt6ct
 
 set -x XDG_CACHE_HOME $HOME/.cache
 set -x XDG_CONFIG_HOME $HOME/.config
