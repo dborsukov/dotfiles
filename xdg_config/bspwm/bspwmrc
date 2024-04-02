@@ -5,9 +5,7 @@ pgrep -x sxhkd >/dev/null || sxhkd &
 pgrep -x dunst >/dev/null || dunst &
 pgrep -x lxsession >/dev/null || lxsession &
 pgrep -x mega-cmd-server >/dev/null || mega-cmd-server &
-pgrep -x nm-applet >/dev/null || nm-applet &
 pgrep -x polybar >/dev/null || polybar main &
-pgrep -x udiskie >/dev/null || udiskie &
 pgrep -x unclutter >/dev/null || unclutter --root &
 
 nitrogen --restore

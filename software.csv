@@ -1,0 +1,76 @@
+TAGS,PACKAGE,DESCRIPTION
+,xorg-xserver,Xserver
+,xorg-xinit,Xserver init script
+,xorg-xsetroot,Xserver root window manager
+,xdotool,Xserver command line automation
+,xorg-xprop,Xserver property displayer part 1
+,xorg-xwininfo,Xserver property displayer part 2
+,xclip,Xserver clipboard manager
+,pipewire-pulse,Audio router and processor
+,wireplumber,Pipewire session/policy manager
+,libnotify,Library for sending notifications
+,lxsession-gtk3,Session manager
+,ntfs-3g,NTFS filesystem driver and utilities
+,p7zip,Archive manipulation from cli
+,bspwm,Tiling window manager
+,sxhkd,Hotkey daemon
+,dunst,Notification daemon
+,polybar,Status bar
+,rofi,Application launcher
+,unclutter,Hides inactive mouse
+,ttf-ubuntu-font-family,Regular font
+,noto-fonts,Fallback font with great coverage
+,ttf-font-awesome,Font with icons
+,noto-fonts-emoji,Font with emojis
+A,ttf-jetbrains-mono-nerd,Monospace nerd-font
+,qt5ct,QT configuration utility
+,nwg-look,GTK configuration utility
+,nitrogen,Background setter for Xserver
+,gnome-themes-extra,Contains dark Adwaita GTK theme
+,xcursor-comix,Cursor theme
+,papirus-icon-theme,Icon theme
+,gnupg,OpenPGP
+,openssh,OpenSSH
+,man-db,Provides manuals
+,alacritty,Terminal emulator
+,fish,Good interactive shell
+A,autojump,Better cd
+,eza,Better ls
+,bat,Better cat
+,neovim,Text editor
+,lazygit,Terminal UI for git
+,lf,File manager
+,thunar,"File manager, graphical"
+,mpv,Media player
+,nsxiv,Image viewer
+,zathura,Document viewer
+,zathura-pdf-mupdf,Zathura PDF support
+,csvlens,CSV document viewer
+,scrot,Screenshot tool
+A,trashy,CLI trash manager
+A,handlr,Better xdg-utils
+A,xdg-utils-handlr,Fully replaces xdg-utils with handlr
+,engrampa,Archive manipulator
+,keepassxc,Password manager
+A,megacmd,Cloud access from command line
+A,ungoogled-chromium-bin,Web browser
+,libsecret,"Needed for: git, keepassxc"
+,inetutils,Needed for: fish
+,fd,Needed for: neovim
+,fzf,Needed for: neovim
+,ripgrep,Needed for: neovim
+,tree-sitter-cli,Needed for: neovim
+,atool,Needed for: lf
+,djvulibre,Needed for: lf
+,ffmpegthumbnailer,Needed for: lf
+,imagemagick,Needed for: lf
+,jq,Needed for: lf
+,lynx,Needed for: lf
+,pandoc,Needed for: lf
+,poppler,Needed for: lf
+,source-highlight,Needed for: lf
+A,ueberzugpp,Needed for: lf
+,gvfs,Needed for: thunar
+,tumbler,Needed for: thunar
+,thunar-archive-plugin,Needed for: thunar
+,thunar-media-tags-plugin,Needed for: thunar
