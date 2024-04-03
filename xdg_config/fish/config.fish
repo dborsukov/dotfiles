@@ -3,8 +3,6 @@ fish_vi_key_bindings
 function fish_greeting;end
 
 function fish_prompt
-    set_color grey
-    echo -n "["(date "+%H:%M")"] "
     set_color blue
     echo -n (hostname)
     if [ $PWD != $HOME ]
@@ -17,6 +15,21 @@ function fish_prompt
     printf '%s ' (__fish_git_prompt)
     set_color red
     echo -n '| '
+    set_color normal
+end
+
+function fish_right_prompt
+    set last_status "$status"
+    if test "$last_status" -gt 0 -a "$last_status" -ne 127 # command not found
+        set_color red
+        echo "failed $last_status"
+    end
+    set_color normal
+    if test "$CMD_DURATION" -gt 3000
+        echo " took: "
+        set_color yellow
+        echo "$(math $CMD_DURATION / 1000)s"
+    end
     set_color normal
 end
 
