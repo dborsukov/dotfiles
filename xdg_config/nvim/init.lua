@@ -62,6 +62,7 @@ vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'File manager' })
 vim.keymap.set('n', '<leader>.', require('telescope.builtin').buffers, { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = 'Fuzzy find' })
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').live_grep, { desc = 'Grep workdir' })
+vim.keymap.set('n', '<leader>z', require('zen-mode').toggle, { desc = 'Toggle zen mode' })
 
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = 'Help' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = 'Files' })
