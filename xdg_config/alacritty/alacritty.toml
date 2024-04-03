@@ -4,5 +4,5 @@ import = [ "~/.config/alacritty/theme.toml" ]
 size = 13
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
 style = "Regular"
+family = "JetBrainsMono Nerd Font"

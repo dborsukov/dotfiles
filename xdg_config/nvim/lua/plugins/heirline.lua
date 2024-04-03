@@ -1,25 +1,22 @@
 return {
   'rebelot/heirline.nvim',
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+  },
   config = function()
-    vim.o.cmdheight = 0
-    vim.o.showcmdloc = 'statusline'
+    vim.o.showmode = false
 
     local utils = require('heirline.utils')
+    local devicons = require('nvim-web-devicons')
     local conditions = require('heirline.conditions')
 
     local colors = {
-      bright_bg = utils.get_highlight('Folded').bg,
-      bright_fg = utils.get_highlight('Folded').fg,
-      cyan = utils.get_highlight('Special').fg,
-      gray = utils.get_highlight('NonText').fg,
-      green = utils.get_highlight('String').fg,
-      blue = utils.get_highlight('Function').fg,
-      orange = utils.get_highlight('Constant').fg,
-      red = utils.get_highlight('DiagnosticError').fg,
+      fg = utils.get_highlight('NormalFloat').fg,
+      bg = utils.get_highlight('NormalFloat').bg,
     }
 
-    local Align = { provider = '%=' }
-    local Space = { provider = ' ' }
+    local SPACE = { provider = ' ' }
+    local SPRING = { provider = '%=' }
 
     local ViMode = {
       init = function(self)
@@ -28,10 +25,11 @@ return {
 
       static = {
         modes = {
-          i = { name = 'INSERT', color = 'green' },
-          n = { name = 'NORMAL', color = 'red' },
-          v = { name = 'VISUAL', color = 'cyan' },
-          ['\22'] = { name = 'VISUAL', color = 'cyan' },
+          n = { name = 'N', color = utils.get_highlight('Character').fg },
+          i = { name = 'I', color = utils.get_highlight('Special').fg },
+          v = { name = 'V', color = utils.get_highlight('Repeat').fg },
+          ['\22'] = { name = 'V', utils.get_highlight('Repeat').fg },
+          c = { name = 'C', color = utils.get_highlight('Keyword').fg },
         },
       },
 
@@ -47,7 +45,7 @@ return {
       hl = function(self)
         local mode = self.modes[self.mode]
         if mode then
-          return { fg = 'bright_bg', bg = mode.color, bold = true }
+          return { fg = 'bg', bg = mode.color, bold = true }
         else
           return { fg = 'white', bg = 'black', bold = true }
         end
@@ -68,18 +66,32 @@ return {
       end,
     }
 
+    local FileIcon = {
+      init = function(self)
+        local filename = self.filename
+        local extension = vim.fn.fnamemodify(filename, ':e')
+        self.icon, self.icon_color = devicons.get_icon_color(filename, extension, { default = true })
+      end,
+      provider = function(self)
+        return self.icon and (self.icon .. ' ')
+      end,
+      hl = function(self)
+        return { fg = self.icon_color }
+      end,
+    }
+
     local FileName = {
       provider = function(self)
         local filename = vim.fn.fnamemodify(self.filename, ':.')
         if filename == '' then
           return '[No Name]'
         end
-        if not conditions.width_percent_below(#filename, 0.25) then
+        if not conditions.width_percent_below(#filename, 0.4) then
           filename = vim.fn.pathshorten(filename)
         end
         return filename
       end,
-      hl = { fg = utils.get_highlight('Directory').fg },
+      hl = { fg = utils.get_highlight('NormalFloat').fg },
     }
 
     local FileFlags = {
@@ -88,18 +100,18 @@ return {
           return vim.bo.modified
         end,
         provider = ' [+]',
-        hl = { fg = 'green' },
+        hl = { fg = utils.get_highlight('DiffChange').fg },
       },
       {
         condition = function()
           return not vim.bo.modifiable or vim.bo.readonly
         end,
         provider = ' [ro]',
-        hl = { fg = 'green' },
+        hl = { fg = utils.get_highlight('DiffChange').fg },
       },
     }
 
-    FileNameBlock = utils.insert(FileNameBlock, FileName, FileFlags, { provider = '%<' })
+    FileNameBlock = utils.insert(FileNameBlock, FileIcon, FileName, FileFlags)
 
     local Git = {
       condition = conditions.is_git_repo,
@@ -113,7 +125,7 @@ return {
           and (self.status_dict.added == nil or self.status_dict.removed == nil or self.status_dict.changed == nil)
       end,
 
-      hl = { fg = 'orange' },
+      hl = { fg = utils.get_highlight('Constant').fg },
 
       {
         provider = function(self)
@@ -129,7 +141,7 @@ return {
         condition = function(self)
           return self.has_changes
         end,
-        provider = '(',
+        provider = '[',
         hl = { bold = true },
       },
       {
@@ -137,130 +149,121 @@ return {
           return self.untracked
         end,
         provider = 'untracked',
-        hl = { fg = 'red', bold = true },
+        hl = { fg = utils.get_highlight('DiffDelete').fg, bold = true },
       },
       {
         provider = function(self)
           local count = self.status_dict.added or 0
           return count > 0 and ('+' .. count)
         end,
-        hl = { fg = 'green' },
+        hl = { fg = utils.get_highlight('DiffAdd').fg },
       },
       {
         provider = function(self)
           local count = self.status_dict.removed or 0
           return count > 0 and ('-' .. count)
         end,
-        hl = { fg = 'red' },
+        hl = { fg = utils.get_highlight('DiffDelete').fg },
       },
       {
         provider = function(self)
           local count = self.status_dict.changed or 0
           return count > 0 and ('~' .. count)
         end,
-        hl = { fg = 'blue' },
+        hl = { fg = utils.get_highlight('DiffChange').fg },
       },
       {
         condition = function(self)
           return self.has_changes
         end,
-        provider = ')',
+        provider = ']',
         hl = { bold = true },
       },
     }
 
-    local Diagnostics = {
-      condition = conditions.has_diagnostics,
-
+    local LSP = {
       init = function(self)
         self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
         self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
         self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
         self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
       end,
-
-      update = { 'DiagnosticChanged', 'BufEnter' },
-
+      update = { 'BufEnter', 'LspAttach', 'LspDetach', 'DiagnosticChanged' },
       {
-        provider = '![',
+        condition = conditions.lsp_attached,
+        {
+          provider = function()
+            local names = {}
+            for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+              table.insert(names, server.name)
+            end
+            return ' [' .. table.concat(names, ' ')
+          end,
+        },
+        {
+          provider = function()
+            return ']'
+          end,
+        },
+        hl = { fg = utils.get_highlight('DiffAdd').fg },
       },
       {
-        provider = function(self)
-          return self.errors > 0 and 'e' .. self.errors
-        end,
-        hl = { fg = utils.get_highlight('DiagnosticError').fg, bold = true },
-      },
-      {
-        provider = function(self)
-          return self.warnings > 0 and 'w' .. self.warnings
-        end,
-        hl = { fg = utils.get_highlight('DiagnosticWarn').fg, bold = true },
-      },
-      {
-        provider = function(self)
-          return self.info > 0 and 'i' .. self.info
-        end,
-        hl = { fg = utils.get_highlight('DiagnosticInfo').fg, bold = true },
-      },
-      {
-        provider = function(self)
-          return self.hints > 0 and 'n' .. self.hints
-        end,
-        hl = { fg = utils.get_highlight('DiagnosticHint').fg, bold = true },
-      },
-      {
-        provider = ']',
-      },
-    }
-
-    local LSPActive = {
-      condition = conditions.lsp_attached,
-      update = { 'LspAttach', 'LspDetach' },
-      provider = function()
-        local names = {}
-        for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-          table.insert(names, server.name)
-        end
-        return '[' .. table.concat(names, ' ') .. ']'
-      end,
-      hl = { fg = 'green', bold = true },
-    }
-
-    local MacroRec = {
-      condition = function()
-        return vim.o.cmdheight == 0 and vim.fn.reg_recording() ~= ''
-      end,
-      provider = function()
-        return ' Recording ' .. "'" .. vim.fn.reg_recording() .. "'"
-      end,
-      hl = { fg = 'green', bold = true },
-      update = {
-        'RecordingEnter',
-        'RecordingLeave',
+        condition = conditions.has_diagnostics,
+        hl = { bold = true },
+        {
+          provider = function()
+            return '['
+          end,
+          hl = { bold = false },
+        },
+        {
+          provider = function(self)
+            return self.errors > 0 and ' E:' .. self.errors
+          end,
+          hl = { fg = utils.get_highlight('DiagnosticError').fg },
+        },
+        {
+          provider = function(self)
+            return self.warnings > 0 and ' W:' .. self.warnings
+          end,
+          hl = { fg = utils.get_highlight('DiagnosticWarn').fg },
+        },
+        {
+          provider = function(self)
+            return self.info > 0 and ' I:' .. self.info
+          end,
+          hl = { fg = utils.get_highlight('DiagnosticInfo').fg },
+        },
+        {
+          provider = function(self)
+            return self.hints > 0 and ' H:' .. self.hints
+          end,
+          hl = { fg = utils.get_highlight('DiagnosticHint').fg },
+        },
+        {
+          provider = function()
+            return ' ]'
+          end,
+          hl = { bold = false },
+        },
       },
     }
 
     local Ruler = {
-      provider = '%l:%2c',
+      provider = '[%3l:%2c]',
     }
 
     require('heirline').setup({
       statusline = {
         ViMode,
-        Space,
-        FileNameBlock,
-        Space,
+        SPACE,
         Git,
-        Space,
-        MacroRec,
-        Align,
-        Diagnostics,
-        Space,
-        LSPActive,
-        Space,
+        SPRING,
+        FileNameBlock,
+        SPRING,
+        LSP,
         Ruler,
-        Space,
-        hl = { bg = 'bright_bg' },
+        hl = { bg = 'bg' },
       },
       opts = {
         colors = colors,
