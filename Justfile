@@ -1,14 +1,11 @@
 alias s := stow
 alias u := unstow
 alias p := preview
+alias d := software-differences
 
 [private]
 default:
   @just --list
-
-# preview software
-preview:
-  @csvlens software.csv
 
 # create links, idempotent, removes stale links
 stow:
@@ -66,5 +63,19 @@ configure-mimeapps:
 	handlr set 'x-scheme-handler/http'         {{browser}}.desktop
 	handlr set 'x-scheme-handler/https'        {{browser}}.desktop
 	handlr set 'x-scheme-handler/terminal'     {{terminal}}.desktop
+
+# preview software
+preview:
+  @csvlens software.csv
+
+# list package differences
+@software-differences:
+  paru -Q | cut -d' ' -f1 | sort > /tmp/system-pkgs.list
+  paru -Qe | cut -d' ' -f1 | sort > /tmp/system-pkgs-manual.list
+  tail -n +2 software.csv | cut -d',' -f2 | sort > /tmp/declared-pkgs.list
+  printf "\033[1;32m%s\033[0m\n" "Added?:"
+  comm -13 /tmp/declared-pkgs.list /tmp/system-pkgs-manual.list
+  printf "\033[1;31m%s\033[0m\n" "Removed?:"
+  comm -23 /tmp/declared-pkgs.list /tmp/system-pkgs-all.list
 
 # vim: set ft=just ts=2 sts=2 sw=2 et

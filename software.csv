@@ -13,6 +13,7 @@ TAGS,PACKAGE,DESCRIPTION
 ,ntfs-3g,NTFS filesystem driver and utilities
 ,p7zip,"ZIP archive manager, and more"
 ,unrar,RAR archive manager
+,yad,Utility to display graphical dialogs from scripts
 ,bspwm,Tiling window manager
 ,sxhkd,Hotkey daemon
 ,dunst,Notification daemon
@@ -60,6 +61,7 @@ A,xdg-utils-handlr,Fully replaces xdg-utils with handlr
 ,keepassxc,Password manager
 A,megacmd,Cloud access from command line
 A,ungoogled-chromium-bin,Web browser
+,git,Version control
 ,python,Python programming language
 ,python-pip,Python package manager
 ,rustup,Rust toolchain installer
