@@ -20,18 +20,16 @@ return {
       layout_strategy = 'horizontal',
     },
     pickers = {
-      oldfiles = {
-        theme = 'dropdown',
-      },
-      find_files = {
-        theme = 'dropdown',
-      },
-      command_history = {
-        theme = 'dropdown',
-      },
-      help_tags = {
-        theme = 'dropdown',
-      },
+      buffers = { theme = 'ivy' },
+      current_buffer_fuzzy_find = {},
+      live_grep = {},
+      command_history = {},
+      autocommands = {},
+      commands = {},
+      find_files = { theme = 'ivy' },
+      git_files = { theme = 'ivy' },
+      help_tags = { theme = 'ivy' },
+      oldfiles = { theme = 'ivy' },
     },
   },
 }

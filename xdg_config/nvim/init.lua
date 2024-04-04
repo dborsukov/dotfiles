@@ -55,21 +55,23 @@ vim.wo.colorcolumn = '100'
 vim.wo.relativenumber = true
 
 require('telescope').load_extension('fzf')
+local pickers = require('telescope.builtin')
 
 vim.keymap.set('i', 'jk', '<Esc>', { silent = true })
 vim.keymap.set('n', '<leader>q', '<cmd>bd<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'File manager' })
-vim.keymap.set('n', '<leader>.', require('telescope.builtin').buffers, { desc = 'Buffers' })
-vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = 'Fuzzy find' })
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').live_grep, { desc = 'Grep workdir' })
+vim.keymap.set('n', '<leader>.', pickers.buffers, { desc = 'Buffers' })
+vim.keymap.set('n', '<leader>/', pickers.current_buffer_fuzzy_find, { desc = 'Fuzzy find' })
+vim.keymap.set('n', '<leader>?', pickers.live_grep, { desc = 'Grep workdir' })
 vim.keymap.set('n', '<leader>z', require('zen-mode').toggle, { desc = 'Toggle zen mode' })
 
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = 'Help' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = 'Files' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').oldfiles, { desc = 'Recent files' })
-vim.keymap.set('n', '<leader>sc', require('telescope.builtin').commands, { desc = 'Commands' })
-vim.keymap.set('n', '<leader>sa', require('telescope.builtin').autocommands, { desc = 'Autocommands' })
-vim.keymap.set('n', '<leader>sC', require('telescope.builtin').command_history, { desc = 'Recent commands' })
+vim.keymap.set('n', '<leader>sC', pickers.command_history, { desc = 'Recent commands' })
+vim.keymap.set('n', '<leader>sa', pickers.autocommands, { desc = 'Autocommands' })
+vim.keymap.set('n', '<leader>sc', pickers.commands, { desc = 'Commands' })
+vim.keymap.set('n', '<leader>sf', pickers.find_files, { desc = 'Files' })
+vim.keymap.set('n', '<leader>sg', pickers.git_files, { desc = 'Git files' })
+vim.keymap.set('n', '<leader>sh', pickers.help_tags, { desc = 'Help' })
+vim.keymap.set('n', '<leader>sr', pickers.oldfiles, { desc = 'Recent files' })
 
 require('which-key').register({
   ['<leader>s'] = { name = 'Search', _ = 'which_key_ignore' },
