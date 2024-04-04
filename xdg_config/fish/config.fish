@@ -53,6 +53,11 @@ if command -q eza
     abbr -a ll 'eza --group-directories-first --long'
     abbr -a lla 'eza --group-directories-first --long --all'
 end
+abbr -a z zellij
+abbr -a za zellij attach
+abbr -a zl zellij list-sessions
+abbr -a zd zellij delete-session
+abbr -a znuke zellij delete-all-sessions
 
 # environment
 set -x EDITOR 'nvim'

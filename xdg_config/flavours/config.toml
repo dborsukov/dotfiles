@@ -49,3 +49,9 @@ template = 'zathura'
 subtemplate = 'default'
 file = '~/.config/zathura/theme.conf'
 rewrite = true
+
+[[items]]
+template = "zellij"
+subtemplate = "default"
+file = "~/.config/zellij/themes/default.kdl"
+rewrite = true
