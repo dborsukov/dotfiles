@@ -1,57 +1,48 @@
 [[item]]
-template = 'alacritty'
-subtemplate = 'default'
 file = '~/.config/alacritty/theme.toml'
+template = 'alacritty'
 rewrite = true
 
 [[item]]
-template = 'bspwm'
-subtemplate = 'default'
 file = '~/.config/bspwm/theme'
+template = 'bspwm'
+rewrite = true
 hook = 'bspc wm -r'
-rewrite = true
 
 [[item]]
-template = 'dunst'
-subtemplate = 'default'
 file = '~/.config/dunst/dunstrc'
+template = 'dunst'
+rewrite = true
 hook = 'killall dunst'
-rewrite = true
 
 [[item]]
-template = 'nvim'
-subtemplate = 'default'
 file = '~/.config/nvim/lua/misc/palette.lua'
+template = 'nvim'
 rewrite = true
 
 [[item]]
-template = 'polybar'
-subtemplate = 'default'
 file = '~/.config/polybar/colors.ini'
+template = 'polybar'
+rewrite = true
 hook = 'polybar-msg cmd restart'
-rewrite = true
 
 [[item]]
-template = 'rofi'
-subtemplate = 'default'
 file = '~/.config/rofi/theme.rasi'
+template = 'rofi'
 rewrite = true
 
 [[item]]
-template = 'xresources'
-subtemplate = 'default-256'
 file = '~/.Xresources'
-hook = 'xrdb ~/.Xresources'
+template = 'xresources'
 rewrite = true
+hook = 'xrdb ~/.Xresources'
 
 [[item]]
-template = 'zathura'
-subtemplate = 'default'
 file = '~/.config/zathura/theme.conf'
+template = 'zathura'
 rewrite = true
 
 [[items]]
-template = "zellij"
-subtemplate = "default"
 file = "~/.config/zellij/themes/default.kdl"
+template = "zellij"
 rewrite = true
