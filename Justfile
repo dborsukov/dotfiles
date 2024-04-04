@@ -76,6 +76,6 @@ preview:
   printf "\033[1;32m%s\033[0m\n" "Added?:"
   comm -13 /tmp/declared-pkgs.list /tmp/system-pkgs-manual.list
   printf "\033[1;31m%s\033[0m\n" "Removed?:"
-  comm -23 /tmp/declared-pkgs.list /tmp/system-pkgs-all.list
+  comm -23 /tmp/declared-pkgs.list /tmp/system-pkgs.list
 
 # vim: set ft=just ts=2 sts=2 sw=2 et

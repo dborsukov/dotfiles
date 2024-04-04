@@ -36,3 +36,17 @@ cmd extract ${{
         *.7z) 7z x "$f";;
     esac
 }}
+
+map w gen-dark-wall
+cmd gen-dark-wall &{{
+    nitrogen --save --set-zoom-fill "$f"
+    flavours generate dark "$f"
+    flavours apply generated
+}}
+
+map W gen-light-wall
+cmd gen-light-wall &{{
+    nitrogen --save --set-zoom-fill "$f"
+    flavours generate light "$f"
+    flavours apply generated
+}}
