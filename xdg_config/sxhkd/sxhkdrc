@@ -26,6 +26,14 @@ super + alt + p
 super + alt + w
 	quick-xwininfo
 
+# screenshot selected region or window
+Print
+	scrot --format=png -q 100 -Z 0 -pf -s --exec='xclip -selection clipboard -t image/png -i $f'
+
+# screenshot whole screen
+shift + Print
+	scrot --format=png -q 100 -Z 0 -p --exec='xclip -selection clipboard -t image/png -i $f'
+
 # bspwm: restart bspwm
 super + alt + r
 	bspc wm -r
