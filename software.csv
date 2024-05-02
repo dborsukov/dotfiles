@@ -24,7 +24,7 @@ TAGS,PACKAGE,DESCRIPTION
 ,noto-fonts,Fallback font with great coverage
 ,ttf-font-awesome,Font with icons
 ,noto-fonts-emoji,Font with emojis
-A,ttf-jetbrains-mono-nerd,Monospace nerd-font
+,ttf-iosevkaterm-nerd,Monospace nerd-font
 ,kvantum-qt5,Theme engine for QT5
 ,qt5ct,Configuration utility for QT5
 ,kvantum,Theme engine for QT6
@@ -34,12 +34,10 @@ A,ttf-jetbrains-mono-nerd,Monospace nerd-font
 ,xcursor-comix,Cursor theme
 ,papirus-icon-theme,Icon theme
 ,nitrogen,Background setter for Xserver
-A,flavours,Base16 theme generator
 ,gnupg,OpenPGP
 ,openssh,OpenSSH
 ,man-db,Provides manuals
 ,alacritty,Terminal emulator
-,zellij,Terminal multiplexer
 ,fish,Good interactive shell
 A,autojump,Better cd
 ,eza,Better ls
@@ -57,7 +55,6 @@ A,autojump,Better cd
 ,ncdu,Disk space management utility
 A,trashy,CLI trash manager
 A,handlr,Better xdg-utils
-A,xdg-utils-handlr,Fully replaces xdg-utils with handlr
 ,engrampa,Archive manipulator
 ,keepassxc,Password manager
 A,megacmd,Cloud access from command line
@@ -66,6 +63,7 @@ A,ungoogled-chromium-bin,Web browser
 ,python,Python programming language
 ,python-pip,Python package manager
 ,rustup,Rust toolchain installer
+,rust-analyzer,Rust code analyzer
 ,libsecret,"Needed for: git, keepassxc"
 ,inetutils,Needed for: fish
 ,fd,Needed for: neovim
