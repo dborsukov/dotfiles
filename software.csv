@@ -40,7 +40,7 @@ TAGS,PACKAGE,DESCRIPTION
 ,alacritty,Terminal emulator
 ,tmux,Terminal multiplexer
 ,fish,Good interactive shell
-A,autojump,Better cd
+,zoxide,Better cd
 ,eza,Better ls
 ,bat,Better cat
 ,neovim,Text editor

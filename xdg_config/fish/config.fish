@@ -33,14 +33,9 @@ function fish_right_prompt
     set_color normal
 end
 
-if test -f /usr/share/autojump/autojump.fish;
-    source /usr/share/autojump/autojump.fish;
-end
-
 # path
 fish_add_path  $HOME/.local/bin
 fish_add_path  $HOME/.cargo/bin
-fish_add_path  $HOME/.config/rofi/scripts
 
 # aliases & abbreviations
 abbr -a v 'nvim'
@@ -53,11 +48,6 @@ if command -q eza
     abbr -a ll 'eza --group-directories-first --long'
     abbr -a lla 'eza --group-directories-first --long --all'
 end
-abbr -a z zellij
-abbr -a za zellij attach
-abbr -a zl zellij list-sessions
-abbr -a zd zellij delete-session
-abbr -a znuke zellij delete-all-sessions
 
 # environment
 set -x EDITOR 'nvim'
@@ -69,6 +59,8 @@ set -x XDG_CACHE_HOME $HOME/.cache
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x XDG_DATA_HOME $HOME/.local/share
 set -x XDG_STATE_HOME $HOME/.local/state
+
+zoxide init fish | source
 
 # autostart x
 if status is-login
