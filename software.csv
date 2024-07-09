@@ -59,6 +59,9 @@ A,trashy,CLI trash manager
 ,engrampa,Archive manipulator
 ,keepassxc,Password manager
 ,firefox,Web browser
+,qbittorrent,BitTorrent client
+,filezilla,FTP client
+,calibre,E-Library management
 ,git,Version control
 ,pyenv,Python version manager
 ,python,Python programming language
