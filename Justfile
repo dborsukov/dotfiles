@@ -22,6 +22,7 @@ unstow:
 
 # init new system
 full-system-init:
+  just stow
   just init-keyboard
   just init-mimeapps
   nitrogen --set-zoom-fill --save wallpaper.png
@@ -33,7 +34,7 @@ init-keyboard:
   sudo sed -i '$i\Option "AutoRepeat" "200 28"' /etc/X11/xorg.conf.d/00-keyboard.conf
 
 archiver    := 'engrampa'
-browser     := 'chromium'
+browser     := 'firefox'
 editor      := 'nvim'
 filemanager := 'thunar'
 imageviewer := 'nsxiv'
@@ -82,6 +83,7 @@ install-aur-helper:
     cd paru
     makepkg -si
     cd ..
+    rm -rf paru
   fi
 
 # show package diff
