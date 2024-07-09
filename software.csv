@@ -60,6 +60,7 @@ A,handlr,Better xdg-utils
 ,keepassxc,Password manager
 ,firefox,Web browser
 ,git,Version control
+,pyenv,Python version manager
 ,python,Python programming language
 ,python-pip,Python package manager
 ,rustup,Rust toolchain installer
