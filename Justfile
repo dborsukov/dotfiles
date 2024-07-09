@@ -1,7 +1,6 @@
 alias s := stow
 alias u := unstow
-alias p := preview
-alias d := software-differences
+alias p := preview-software
 
 [private]
 default:
@@ -15,21 +14,20 @@ stow:
   @stow --verbose --target=$HOME/.config --restow xdg_config
   @stow --verbose --target=$HOME/.local/bin --restow scripts
 
-# remove all links
+# remove links
 unstow:
   @stow --verbose --target=$HOME --delete home
   @stow --verbose --target=$HOME/.config --delete xdg_config
   @stow --verbose --target=$HOME/.local/bin --delete scripts
 
-# install software
-install-software:
-  #!/usr/bin/env bash
-  sudo pacman -Sy archlinux-keyring
-  packages=($(tail -n +2 software.csv | cut -d ',' -f2))
-  paru --noconfirm --needed -S "${packages[@]}"
+# init new system
+full-system-init:
+  just init-keyboard
+  just init-mimeapps
+  nitrogen --set-zoom-fill --save wallpaper.png
 
 # generate keyboard configuration
-configure-keyboard:
+init-keyboard:
   sudo rm -f /etc/X11/xorg.conf.d/00-keyboard.conf
   sudo localectl set-x11-keymap us,ru,ua pc105 qwerty grp:win_space_toggle,caps:ctrl_modifier
   sudo sed -i '$i\Option "AutoRepeat" "200 28"' /etc/X11/xorg.conf.d/00-keyboard.conf
@@ -44,7 +42,7 @@ pdfreader   := 'org.pwmt.zathura'
 terminal    := 'Alacritty'
 
 # use 'handlr' to create MIME associations
-configure-mimeapps:
+init-mimeapps:
 	handlr set 'application/gzip'              {{archiver}}.desktop
 	handlr set 'application/pdf'               {{pdfreader}}.desktop
 	handlr set 'application/x-7z-compressed'   {{archiver}}.desktop
@@ -65,10 +63,28 @@ configure-mimeapps:
 	handlr set 'x-scheme-handler/terminal'     {{terminal}}.desktop
 
 # preview software
-preview:
+preview-software:
   @csvlens software.csv
 
-# list package differences
+# install software
+install-software: install-aur-helper
+  #!/usr/bin/env bash
+  sudo pacman -Sy archlinux-keyring
+  packages=($(tail -n +2 software.csv | cut -d ',' -f2))
+  paru --noconfirm --needed -S "${packages[@]}"
+
+# install aur helper
+install-aur-helper:
+  #!/usr/bin/env bash
+  if ! command -v paru &> /dev/null; then
+    sudo pacman -Sy --needed base-devel
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si
+    cd ..
+  fi
+
+# show package diff
 @software-differences:
   paru -Q | cut -d' ' -f1 | sort > /tmp/system-pkgs.list
   paru -Qe | cut -d' ' -f1 | sort > /tmp/system-pkgs-manual.list
