@@ -55,7 +55,7 @@ TAGS,PACKAGE,DESCRIPTION
 ,scrot,Screenshot tool
 ,ncdu,Disk space management utility
 A,trashy,CLI trash manager
-A,handlr,Better xdg-utils
+,handlr-regex,Better xdg-utils
 ,engrampa,Archive manipulator
 ,keepassxc,Password manager
 ,firefox,Web browser
