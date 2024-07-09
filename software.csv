@@ -59,7 +59,7 @@ A,handlr,Better xdg-utils
 ,engrampa,Archive manipulator
 ,keepassxc,Password manager
 A,megacmd,Cloud access from command line
-A,ungoogled-chromium-bin,Web browser
+,firefox,Web browser
 ,git,Version control
 ,python,Python programming language
 ,python-pip,Python package manager
