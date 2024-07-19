@@ -1,8 +1,56 @@
-# vim: ts=3 sts=3 sw=3
+# ╔═════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                           SPECIAL                                           ║
+# ╚═════════════════════════════════════════════════════════════════════════════════════════════╝
 
-# reload sxhkd
-super + Escape
+# restart sxhkd
+super + F1
 	pkill -USR1 -x sxhkd
+
+# restart bspwm
+super + F2
+	bspc wm -r
+
+# quick xprop
+super + F5
+	quick-xprop
+
+# quick wininfo
+super + F6
+	quick-xwininfo
+
+# ╔═════════════════════════════════════════════════════════════════════════════════════════════╗ 
+# ║                                            BSPWM                                            ║ 
+# ╚═════════════════════════════════════════════════════════════════════════════════════════════╝ 
+
+# close/kill node
+super + shift + {q,ctrl+q}
+	bspc node -{c,k}
+
+# switch to last node
+super + Tab
+	bspc node -f last
+
+# focus desktop or send node to it
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# focus node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# set node state
+super + {t,shift+f,f}
+	bspc node -t {tiled,floating,\~fullscreen}
+
+# cycle floating windows
+super + {_,shift + }grave
+	bspc node 'focused.floating#{next,prev}.local.!hidden.floating' -f \
+	    || bspc node 'last.local.!focused.!hidden.floating' -f \
+	    || bspc node  'any.local.!focused.!hidden.floating' -f
+
+# ╔═════════════════════════════════════════════════════════════════════════════════════════════╗ 
+# ║                                             MISC                                            ║ 
+# ╚═════════════════════════════════════════════════════════════════════════════════════════════╝ 
 
 # terminal
 super + Return
@@ -12,44 +60,14 @@ super + Return
 super + {p,shift+p,ctrl+p}
 	{rofi -show drun,rofi -show run, rofi-drun-categories}
 
-# volume control
-super + alt + {equal, minus, BackSpace}
+# volume
+super + {equal, minus, BackSpace}
 	pactl {set-sink-volume @DEFAULT_SINK@ +1%,\
           set-sink-volume @DEFAULT_SINK@ -1%,\
 	       set-sink-mute @DEFAULT_SINK@ toggle}
 
-# quick xprop
-super + alt + p
-	quick-xprop
+# screenshot screen/selection
+{_,shift + }Print
+	scrot --format=png -q 100 -Z 0 -p {_,-fs} --exec='xclip -selection clipboard -t image/png -i $f'
 
-# quick wininfo
-super + alt + w
-	quick-xwininfo
-
-# screenshot selected region or window
-Print
-	scrot --format=png -q 100 -Z 0 -pf -s --exec='xclip -selection clipboard -t image/png -i $f'
-
-# screenshot whole screen
-shift + Print
-	scrot --format=png -q 100 -Z 0 -p --exec='xclip -selection clipboard -t image/png -i $f'
-
-# bspwm: restart bspwm
-super + alt + r
-	bspc wm -r
-
-# bspwm: close, kill node
-super + shift + {q,ctrl+q}
-	bspc node -{c,k}
-
-# bspwm: focus desktop or send node to it
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-# bspwm: focus node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
-
-# bspwm: set node state
-super + {t,shift+f,f}
-	bspc node -t {tiled,floating,\~fullscreen}
+# vim: ts=3 sts=3 sw=3
