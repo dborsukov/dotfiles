@@ -4,7 +4,7 @@ pgrep -x sxhkd >/dev/null || sxhkd &
 pgrep -x dunst >/dev/null || dunst &
 pgrep -x lxsession >/dev/null || lxsession &
 pgrep -x polybar >/dev/null || polybar main &
-pgrep -x unclutter >/dev/null || unclutter --root &
+pgrep -x unclutter >/dev/null || unclutter -root &
 
 pgrep -x mega-cmd-server >/dev/null || mega-cmd-server &
 
@@ -21,7 +21,7 @@ bspc config single_monocle true
 bspc config borderless_monocle true
 
 bspc rule -a "Nitrogen" state=floating rectangle=900x500+10+10
-bspc rule -a "KeePassXC" state=floating rectangle=900x500+1010+570
+bspc rule -a "KeePassXC" state=floating rectangle=900x500+1010+545
 bspc rule -a "SpeedCrunch" state=floating rectangle=400x500+1510+10
 
 bspc config normal_border_color "#282828"

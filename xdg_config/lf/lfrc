@@ -24,11 +24,6 @@ cmd on-cd &{{
         zoxide add "$PWD"
 }}
 
-cmd trash &{{
-    mapfile -t files < <(printf %s "$fx")
-    trash put "${files[@]}"
-}}
-
 cmd delete &{{
     mapfile -t files < <(printf %s "$fx")
     rm -rf "${files[@]}"
@@ -46,18 +41,4 @@ cmd extract ${{
         *.tar) tar xf "$f";;
         *.7z) 7z x "$f";;
     esac
-}}
-
-map w gen-dark-wall
-cmd gen-dark-wall &{{
-    nitrogen --save --set-zoom-fill "$f"
-    flavours generate dark "$f"
-    flavours apply generated
-}}
-
-map W gen-light-wall
-cmd gen-light-wall &{{
-    nitrogen --save --set-zoom-fill "$f"
-    flavours generate light "$f"
-    flavours apply generated
 }}

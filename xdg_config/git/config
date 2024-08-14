@@ -7,6 +7,6 @@
 [init]
 	defaultBranch = main
 [commit]
-	gpgsign = true
+	gpgsign = false
 [credential]
 	helper = libsecret

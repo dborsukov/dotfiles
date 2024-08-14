@@ -40,14 +40,8 @@ fish_add_path  $HOME/.cargo/bin
 # aliases & abbreviations
 abbr -a v 'nvim'
 abbr -a lg 'lazygit'
-abbr -a tp 'trash put'
 abbr -a lf '~/.config/lf/lf-img'
-if command -q eza
-    abbr -a ls 'eza --group-directories-first'
-    abbr -a la 'eza --group-directories-first --all'
-    abbr -a ll 'eza --group-directories-first --long'
-    abbr -a lla 'eza --group-directories-first --long --all'
-end
+abbr -a e 'eza --group-directories-first'
 
 # environment
 set -x EDITOR 'nvim'
