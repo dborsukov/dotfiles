@@ -42,6 +42,9 @@ abbr -a v 'nvim'
 abbr -a lg 'lazygit'
 abbr -a lf '~/.config/lf/lf-img'
 abbr -a e 'eza --group-directories-first'
+abbr -a s 'zypper search'
+abbr -a i 'sudo zypper install'
+abbr -a u 'sudo zypper refresh && sudo zypper update'
 
 # environment
 set -x EDITOR 'nvim'
