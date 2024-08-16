@@ -15,6 +15,7 @@ lxsession
 
 dunst
 libnotify4
+libnotify-tools
 
 bspwm
 sxhkd
