@@ -5,6 +5,7 @@ xclip
 xwininfo
 xprop
 xsetroot
+xterm
 
 pipewire
 wireplumber
@@ -37,45 +38,8 @@ ubuntu-fonts
 fontawesome-fonts
 google-noto-coloremoji-fonts
 
-fish
-pyenv
-
-exa
-bat
-tmux
-scrot
-zoxide
-lazygit
-
-neovim
-gcc
-make
-fd
-fzf
-ripgrep
-
-lf
-7zip
-ImageMagick
-atool
-djvulibre
-ffmpegthumbnailer
-jq
-lynx
-pandoc-cli
-source-highlight
-ueberzugpp
-unrar
-
-alacritty
 engrampa
-keepassxc
-mpv
 nitrogen
-speedcrunch
-viewnior
-zathura
-zathura-plugin-pdf-mupdf
 
 gvfs
 thunar

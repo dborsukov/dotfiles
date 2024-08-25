@@ -16,12 +16,16 @@ unstow:
   stow --verbose --target=$HOME/.config --delete xdg_config
   stow --verbose --target=$HOME/.local/bin --delete scripts
 
-# initialize new system
-deploy:
-  #!/usr/bin/env bash
+# only user configs and packages (for use with existing DEs)
+deploy-lite:
+  just stow
+  cat pkglist-user.txt | xargs sudo zypper install --no-confirm
+
+# custom system deployment
+deploy-full:
   just stow
   just init-keyboard
-  cat pkglist.txt | xargs sudo zypper install --no-confirm
+  cat pkglist-user.txt pkglist-system.txt | xargs sudo zypper install --no-confirm
 
 [private]
 init-keyboard:
