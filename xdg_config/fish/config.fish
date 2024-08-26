@@ -33,20 +33,13 @@ function fish_right_prompt
     set_color normal
 end
 
-# path
 fish_add_path  $HOME/.local/bin
 fish_add_path  $HOME/.cargo/bin
 
-# aliases & abbreviations
 abbr -a v 'nvim'
 abbr -a lg 'lazygit'
-abbr -a lf '~/.config/lf/lf-img'
 abbr -a e 'eza --group-directories-first'
-abbr -a s 'zypper search'
-abbr -a i 'sudo zypper install'
-abbr -a u 'sudo zypper refresh && sudo zypper update'
 
-# environment
 set -x EDITOR 'nvim'
 set -x VISUAL 'nvim'
 set -x SXHKD_SHELL /usr/bin/bash
@@ -59,11 +52,6 @@ set -x XDG_STATE_HOME $HOME/.local/state
 
 zoxide init fish | source
 
-set -Ux PYENV_ROOT $HOME/.pyenv
-set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-pyenv init - | source
-
-# autostart x
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
         exec startx -- -keeptty

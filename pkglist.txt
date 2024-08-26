@@ -1,14 +1,24 @@
-xorg-minimal
-xwininfo
-xsetroot
-xprop
+xorg
 xclip
+picom
+
+dbus
+polkit
+cronie
+chrony
+elogind
+lxsession
+
+NetworkManager
+NetworkManager-openvpn
+network-manager-applet
 
 pipewire
 wireplumber
 
-polkit
-lxsession
+bluez
+blueman
+libspa-bluetooth
 
 dunst
 libnotify
@@ -22,6 +32,7 @@ unclutter
 qt5ct
 qt6ct
 kvantum
+nitrogen
 nwg-look
 papirus-icon-theme
 gnome-themes-extra
@@ -31,26 +42,40 @@ noto-fonts-emoji
 ttf-ubuntu-font-family
 
 fish-shell
-exa
+eza
 bat
 tmux
+wget
+curl
 scrot
 zoxide
 lazygit
 
 neovim
-gcc
-make
 fd
 fzf
+gcc
+make
+unzip
+nodejs
 ripgrep
 
-alacritty
-keepassxc
-speedcrunch
+7zip
+engrampa
+
 mpv
 viewnior
 zathura
 zathura-pdf-mupdf
 
+firefox
+alacritty
+keepassxc
+speedcrunch
 
+lf
+gvfs
+Thunar
+tumbler
+thunar-archive-plugin
+thunar-media-tags-plugin
