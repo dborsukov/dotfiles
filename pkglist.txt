@@ -60,16 +60,6 @@ unzip
 nodejs
 ripgrep
 
-yazi
-file
-jq
-fd
-7zip
-ripgrep
-poppler
-ImageMagick
-ffmpegthumbnailer
-
 7zip
 engrampa
 
@@ -83,7 +73,18 @@ wezterm
 keepassxc
 speedcrunch
 
+yazi
+file
+jq
+fd
+7zip
+ripgrep
+poppler
+ImageMagick
+ffmpegthumbnailer
+
 gvfs
+gvfs-mtp
 Thunar
 tumbler
 thunar-archive-plugin
