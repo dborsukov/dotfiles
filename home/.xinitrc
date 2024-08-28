@@ -11,6 +11,6 @@ fi
 xsetroot -cursor_name left_ptr
 xrandr -s 1920x1080 -r 60
 xrdb -merge ~/.Xresources
-nitrogen --restore
+~/.fehbg
 
 exec ssh-agent dbus-launch bspwm

@@ -46,7 +46,7 @@ super + {_,shift + }grave
 
 # terminal
 super + Return
-	alacritty
+	wezterm
 
 # launcher
 super + {p,shift+p,ctrl+p}

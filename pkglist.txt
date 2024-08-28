@@ -29,10 +29,10 @@ polybar
 rofi
 unclutter
 
+feh
 qt5ct
 qt6ct
 kvantum
-nitrogen
 nwg-look
 papirus-icon-theme
 gnome-themes-extra
@@ -60,20 +60,29 @@ unzip
 nodejs
 ripgrep
 
+yazi
+file
+jq
+fd
+7zip
+ripgrep
+poppler
+ImageMagick
+ffmpegthumbnailer
+
 7zip
 engrampa
 
 mpv
-viewnior
+nsxiv
 zathura
 zathura-pdf-mupdf
 
 firefox
-alacritty
+wezterm
 keepassxc
 speedcrunch
 
-lf
 gvfs
 Thunar
 tumbler

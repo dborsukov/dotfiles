@@ -1,0 +1,5 @@
+[manager]
+prepend_keymap = [
+    { on = [ "i", "w" ], run = "shell --orphan --confirm 'feh --bg-fill \"$0\"'", desc = "Set wallpaper (fill)" },
+    { on = [ "i", "W" ], run = "shell --orphan --confirm 'feh --bg-max \"$0\"'", desc = "Set wallpaper (zoom)" },
+]

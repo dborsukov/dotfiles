@@ -33,8 +33,14 @@ function fish_right_prompt
     set_color normal
 end
 
-fish_add_path  $HOME/.local/bin
-fish_add_path  $HOME/.cargo/bin
+function yy
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
 
 abbr -a v 'nvim'
 abbr -a lg 'lazygit'
@@ -49,6 +55,9 @@ set -x XDG_CACHE_HOME $HOME/.cache
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x XDG_DATA_HOME $HOME/.local/share
 set -x XDG_STATE_HOME $HOME/.local/state
+
+fish_add_path  $HOME/.local/bin
+fish_add_path  $HOME/.cargo/bin
 
 zoxide init fish | source
 
