@@ -7,7 +7,7 @@ image_filter = "catmull-rom"
 
 [open]
 rules = [
-    { mime = "text/*", use = [ "edit" ] },
+    { mime = "text/*", use = [ "edit", "exec" ] },
     { mime = "image/*", use = [ "view-image" ] },
     { mime = "{audio,video}/*", use = [ "play" ] },
     { mime = "application/pdf", use = [ "view-pdf" ] },
