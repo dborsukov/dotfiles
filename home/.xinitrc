@@ -1,16 +1,19 @@
 #!/bin/sh
-# shellcheck disable=SC1090
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
-fi
-
-xsetroot -cursor_name left_ptr
 xrandr -s 1920x1080 -r 60
-xrdb -merge ~/.Xresources
-~/.fehbg
+xsetroot -cursor_name left_ptr
 
-exec ssh-agent dbus-launch bspwm
+~/.fehbg
+xrdb -merge ~/.Xresources & xrdbpid=$!
+
+autostart="dunst dwmblocks unclutter nm-applet blueman-applet mega-cmd-server /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
+
+for program in $autostart; do
+	pidof -sx "$program" || "$program" &
+done >/dev/null 2>&1
+
+# Ensure that xrdb has finished running before moving on
+[ -n "$xrdbpid" ] && wait "$xrdbpid"
+
+dbus-update-activation-environment --all
+dbus-launch --exit-with-session ssh-agent dwm

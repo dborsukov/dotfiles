@@ -44,12 +44,12 @@ end
 
 abbr -a v 'nvim'
 abbr -a lg 'lazygit'
-abbr -a e 'eza --group-directories-first'
+abbr -a e 'exa --group-directories-first'
 
 set -x EDITOR 'nvim'
 set -x VISUAL 'nvim'
 set -x SXHKD_SHELL /usr/bin/bash
-set -x QT_QPA_PLATFORMTHEME qt6ct
+set -x QT_QPA_PLATFORMTHEME qt5ct
 
 set -x XDG_CACHE_HOME $HOME/.cache
 set -x XDG_CONFIG_HOME $HOME/.config
@@ -58,6 +58,7 @@ set -x XDG_STATE_HOME $HOME/.local/state
 
 fish_add_path  $HOME/.local/bin
 fish_add_path  $HOME/.cargo/bin
+fish_add_path  /opt/nvim-linux64/bin
 
 zoxide init fish | source
 

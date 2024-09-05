@@ -154,7 +154,6 @@ vim.g.rustaceanvim = {
 -- These configs are also accessible with ':help lspconfig-all'
 local servers = {
   bashls = {},
-  clangd = {},
   lua_ls = {
     settings = {
       Lua = {

@@ -2,7 +2,7 @@
 height = 200
 width = (100, 400)
 origin = top-right
-offset = 10x10
+offset = 10x35
 frame_width = 1
 
 font = Ubuntu 11
