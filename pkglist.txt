@@ -48,7 +48,6 @@ jq
 maim
 make
 nala
-neovim
 nodejs
 poppler-utils
 ripgrep
@@ -57,7 +56,6 @@ tmux
 unclutter
 unzip
 wget
-zoxide
 
 mpv
 nsxiv
@@ -70,3 +68,7 @@ keepassxc
 qutebrowser
 qbittorrent
 speedcrunch
+
+# build with rust: yazi
+# custom apt repo: firefox, wezterm
+# fresh prebuilt binary: lazyvim, neovim, zoxide
