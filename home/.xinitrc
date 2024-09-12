@@ -2,6 +2,7 @@
 
 xrandr -s 1920x1080 -r 60
 xsetroot -cursor_name left_ptr
+xset s off -dpms # do not turn off display
 
 ~/.fehbg
 xrdb -merge ~/.Xresources & xrdbpid=$!
