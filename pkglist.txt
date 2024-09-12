@@ -19,6 +19,10 @@ network-manager-openvpn
 dunst
 libnotify-bin
 
+tuned
+tuned-utils
+tuned-utils-systemtap
+
 feh
 qt6ct
 qt5ct
