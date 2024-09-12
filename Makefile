@@ -11,14 +11,10 @@ stow:
 	mkdir -p $(HOME)/.local/bin
 	stow --verbose --target=$(HOME) --restow home
 	sudo stow --verbose --target=/etc --restow etc
-	stow --verbose --target=$(HOME)/.config --restow xdg_config
-	stow --verbose --target=$(HOME)/.local/bin --restow scripts
 
 unstow:
 	stow --verbose --target=$(HOME) --delete home
 	sudo stow --verbose --target=/etc --delete etc
-	stow --verbose --target=$(HOME)/.config --delete xdg_config
-	stow --verbose --target=$(HOME)/.local/bin --delete scripts
 
 bootstrap: stow
 	# packages
