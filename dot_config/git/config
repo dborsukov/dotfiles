@@ -4,9 +4,9 @@
 	signingkey = 11D989B43A51E2B1763870CB7E7511C411AB7178
 [core]
 	editor = nvim
-[init]
-	defaultBranch = main
 [commit]
 	gpgsign = false
+[init]
+	defaultBranch = main
 [credential]
 	helper = libsecret
