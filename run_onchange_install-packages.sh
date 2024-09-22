@@ -19,14 +19,7 @@ sudo nala install -y            \
     7zip                        \
     unzip                       \
     unrar                       \
-                                \
-    neovim                      \
-    nodejs                      \
-    npm                         \
-    fd-find                     \
-    fzf                         \
-    ripgrep                     \
-    tree-sitter-cli             \
+    zfsutils-linux              \
                                 \
     mpv                         \
     zathura                     \
@@ -36,3 +29,4 @@ sudo nala install -y            \
     keepassxc                   \
     qbittorrent                 \
     speedcrunch                 \
+    gnome-tweaks                \
