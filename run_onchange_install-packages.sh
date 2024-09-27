@@ -13,7 +13,7 @@ sudo nala install -y            \
                                 \
     fish                        \
     tmux                        \
-    eza                         \
+    exa                         \
     zoxide                      \
                                 \
     7zip                        \
@@ -29,4 +29,3 @@ sudo nala install -y            \
     keepassxc                   \
     qbittorrent                 \
     speedcrunch                 \
-    gnome-tweaks                \
