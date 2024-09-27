@@ -13,7 +13,7 @@ sudo nala install -y            \
                                 \
     fish                        \
     tmux                        \
-    exa                         \
+    eza                         \
     zoxide                      \
                                 \
     7zip                        \
