@@ -6,26 +6,14 @@ if ! command -v nala &> /dev/null; then
 fi
 
 sudo nala install -y            \
-    git                         \
-    gcc                         \
-    make                        \
-    wget                        \
-                                \
     fish                        \
     tmux                        \
+    wget                        \
     eza                         \
     zoxide                      \
                                 \
-    7zip                        \
-    unzip                       \
-    unrar                       \
-    zfsutils-linux              \
-                                \
     mpv                         \
-    zathura                     \
-    zathura-pdf-poppler         \
-                                \
-    flatpak                     \
+    peazip                      \
     keepassxc                   \
-    qbittorrent                 \
-    speedcrunch                 \
+                                \
+    zfsutils-linux              \
