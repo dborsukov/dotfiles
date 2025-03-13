@@ -2,8 +2,8 @@ local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
 local font_with_fallback = wezterm.font_with_fallback({
-  'DepartureMono Nerd Font',
   'IosevkaTerm NF',
+  'DepartureMono Nerd Font',
   'Ubuntu Mono',
   'monospace',
 })
