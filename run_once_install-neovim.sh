@@ -5,10 +5,6 @@ if ! command -v nala &> /dev/null; then
     sudo apt install -y nala
 fi
 
-sudo add-apt-repository ppa:neovim-ppa/stable -y
-
-sudo nala update
-
 sudo nala install -y            \
     neovim                      \
                                 \
