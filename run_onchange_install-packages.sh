@@ -6,14 +6,14 @@ if ! command -v nala &> /dev/null; then
 fi
 
 sudo nala install -y            \
+                                \
+    git                         \
+    wget                        \
+    curl                        \
+                                \
     fish                        \
     tmux                        \
-    wget                        \
     eza                         \
     zoxide                      \
                                 \
     mpv                         \
-    peazip                      \
-    keepassxc                   \
-                                \
-    zfsutils-linux              \
