@@ -1,11 +1,9 @@
 #!/bin/bash
 # vim: set ts=4 sw=4 expandtab:
 
-if ! command -v nala &> /dev/null; then
-    sudo apt install -y nala
-fi
+sudo apt update
 
-sudo nala install -y            \
+sudo apt install -y             \
                                 \
     git                         \
     wget                        \

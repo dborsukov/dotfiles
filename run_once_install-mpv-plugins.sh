@@ -1,10 +1,7 @@
 #!/bin/bash
 
-if ! command -v nala &> /dev/null; then
-    sudo apt install -y nala
-fi
-
-sudo nala update && sudo nala install -y curl wget unzip
+sudo apt update
+sudo apt install -y curl wget unzip
 
 mkdir -p ~/.config/mpv/scripts
 
