@@ -3,15 +3,21 @@
 
 sudo apt update
 
-sudo apt install -y             \
-                                \
-    git                         \
-    wget                        \
-    curl                        \
-                                \
-    fish                        \
-    tmux                        \
-    eza                         \
-    zoxide                      \
-                                \
-    mpv                         \
+sudo apt install -y                 \
+                                    \
+    git                             \
+    wget                            \
+    curl                            \
+                                    \
+    fish                            \
+    tmux                            \
+    eza                             \
+    zoxide                          \
+                                    \
+    mpv                             \
+
+flatpak install -y flathub          \
+                                    \
+    io.github.flattool.Warehouse    \
+    com.github.tchx84.Flatseal      \
+    com.brave.Browser               \
